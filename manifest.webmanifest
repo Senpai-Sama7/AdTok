@@ -1,0 +1,22 @@
+{
+  "name": "AdTok Growth Manual",
+  "short_name": "AdTok",
+  "description": "TikTok Growth Master Manual — High-impact playbook for TikTok content creation, SEO, monetization, and growth.",
+  "start_url": "/AdTok/index.html",
+  "scope": "/AdTok/",
+  "display": "standalone",
+  "background_color": "#f5f1eb",
+  "theme_color": "#d4756b",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
