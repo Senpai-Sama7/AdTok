@@ -1,0 +1,34 @@
+{
+  "name": "tiktok-marketing-dashboard",
+  "version": "1.0.0",
+  "description": "Professional-grade marketing dashboard combining TikTok strategy with behavioral psychology and data science",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server",
+    "test": "echo 'See docs/test-report.md for comprehensive test results'",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "tiktok",
+    "marketing",
+    "psychology",
+    "behavioral-economics",
+    "viral-content",
+    "analytics",
+    "dashboard"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "homepage": "https://your-username.github.io/tiktok-marketing-dashboard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/tiktok-marketing-dashboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/tiktok-marketing-dashboard/issues"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
