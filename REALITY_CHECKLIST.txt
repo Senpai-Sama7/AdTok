@@ -1,0 +1,4 @@
+- [x] FEAT-001 – Production build emits relative asset URLs — VERIFIED (npm run build → evidence/npm-build-20250214.txt)
+- [x] FEAT-002 – Automated QA gate verifies structure & accessibility — VERIFIED (npm test → evidence/npm-test-20250214.txt)
+- [x] FEAT-003 – Tab navigation maintains aria state across sidebar and header — VERIFIED (npm run test:smoke → evidence/npm-test-smoke-20250214.txt)
+- [x] FEAT-004 – Charts render crisply at device pixel ratio — VERIFIED (npm run test:smoke → evidence/npm-test-smoke-20250214.txt)

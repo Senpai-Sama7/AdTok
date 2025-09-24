@@ -1,4 +1,5 @@
 {
+  "generated_at_utc": "2025-09-24T23:00:23Z",
   "features": [
     {
       "id": "FEAT-001",
@@ -8,7 +9,15 @@
       "expected": [
         "dist/index.html references ./assets/ URLs",
         "vite build completes without errors"
-      ]
+      ],
+      "status": "VERIFIED",
+      "evidence": {
+        "log": "evidence/npm-build-20250214.txt",
+        "signals": [
+          "vite build completes without errors",
+          "dist/index.html references ./assets/"
+        ]
+      }
     },
     {
       "id": "FEAT-002",
@@ -18,7 +27,15 @@
       "expected": [
         "All required files reported as Found",
         "QA gate ends with 'All automated QA checks passed.'"
-      ]
+      ],
+      "status": "VERIFIED",
+      "evidence": {
+        "log": "evidence/npm-test-20250214.txt",
+        "signals": [
+          "✔ Found index.html",
+          "All automated QA checks passed."
+        ]
+      }
     },
     {
       "id": "FEAT-003",
@@ -28,7 +45,15 @@
       "expected": [
         "Playwright test 'sidebar navigation updates aria state and reveals panel' passes",
         "aria-selected toggles true/false per active tab"
-      ]
+      ],
+      "status": "VERIFIED",
+      "evidence": {
+        "log": "evidence/npm-test-smoke-20250214.txt",
+        "signals": [
+          "✓ sidebar navigation updates aria state and reveals panel",
+          "aria-selected toggles during test run"
+        ]
+      }
     },
     {
       "id": "FEAT-004",
@@ -38,7 +63,15 @@
       "expected": [
         "Playwright test 'charts initialize with non-zero canvas dimensions' passes",
         "Canvas width attributes remain > 0 after initialization"
-      ]
+      ],
+      "status": "VERIFIED",
+      "evidence": {
+        "log": "evidence/npm-test-smoke-20250214.txt",
+        "signals": [
+          "✓ charts initialize with non-zero canvas dimensions",
+          "Canvas width > 0 assertion passes"
+        ]
+      }
     }
   ]
 }
