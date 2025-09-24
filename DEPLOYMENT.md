@@ -24,7 +24,7 @@ tiktok-marketing-dashboard
 4. Save the changes
 
 ### 4. Automatic Deployment
-- Every push to the `main` branch will automatically deploy
+- Every push to the `main` branch installs dependencies, runs `npm test`, and then deploys automatically
 - Check the "Actions" tab to see deployment status
 - Your site will be live at: `https://your-username.github.io/tiktok-marketing-dashboard`
 

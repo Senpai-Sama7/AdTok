@@ -15,25 +15,25 @@
   <aside class="side" role="navigation" aria-label="Main navigation">
     <div class="brand"><div class="dot"></div> Master TikTok</div>
     <nav class="nav" role="tablist" aria-label="Dashboard sections">
-      <button class="active" data-tab="home" role="tab" aria-selected="true" aria-controls="home" tabindex="0">Home</button>
-      <button data-tab="scripts" role="tab" aria-selected="false" aria-controls="scripts" tabindex="-1">Viral Scripts</button>
-      <button data-tab="psychology" role="tab" aria-selected="false" aria-controls="psychology" tabindex="-1">Psychology</button>
-      <button data-tab="analytics" role="tab" aria-selected="false" aria-controls="analytics" tabindex="-1">Analytics</button>
-      <button data-tab="monetize" role="tab" aria-selected="false" aria-controls="monetize" tabindex="-1">Digital Products</button>
-      <button data-tab="strategy" role="tab" aria-selected="false" aria-controls="strategy" tabindex="-1">Strategy</button>
+      <button id="tab-home" class="active" type="button" data-tab="home" role="tab" aria-selected="true" aria-controls="home" tabindex="0">Home</button>
+      <button id="tab-scripts" type="button" data-tab="scripts" role="tab" aria-selected="false" aria-controls="scripts" tabindex="-1">Viral Scripts</button>
+      <button id="tab-psychology" type="button" data-tab="psychology" role="tab" aria-selected="false" aria-controls="psychology" tabindex="-1">Psychology</button>
+      <button id="tab-analytics" type="button" data-tab="analytics" role="tab" aria-selected="false" aria-controls="analytics" tabindex="-1">Analytics</button>
+      <button id="tab-monetize" type="button" data-tab="monetize" role="tab" aria-selected="false" aria-controls="monetize" tabindex="-1">Digital Products</button>
+      <button id="tab-strategy" type="button" data-tab="strategy" role="tab" aria-selected="false" aria-controls="strategy" tabindex="-1">Strategy</button>
     </nav>
   </aside>
   <main class="main" role="main">
     <div class="hdr">
       <div><strong>Dark‑Neon Guide</strong> <span class="muted">App‑style dashboard</span></div>
-      <div class="tabs" role="tablist" aria-label="Content views">
-        <button class="active" data-tab="home" role="tab" aria-selected="true" tabindex="0">Dashboard</button>
-        <button data-tab="psychology" role="tab" aria-selected="false" tabindex="-1">Psychology</button>
-        <button data-tab="scripts" role="tab" aria-selected="false" tabindex="-1">Scripts</button>
+      <div class="tabs" role="toolbar" aria-label="Quick tab shortcuts">
+        <button class="active" type="button" data-tab="home" aria-pressed="true">Dashboard</button>
+        <button type="button" data-tab="psychology" aria-pressed="false">Psychology</button>
+        <button type="button" data-tab="scripts" aria-pressed="false">Scripts</button>
       </div>
     </div>
 
-    <section class="view" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <section class="view" id="home" role="tabpanel" aria-labelledby="tab-home">
       <div class="grid">
         <div class="card s4">
           <div class="title">Psychology-Driven Framework</div>
@@ -47,10 +47,11 @@
         <div class="card s8"><div class="title">Average Watch Time — last 14 posts</div><canvas id="line" aria-label="Line chart showing average watch time trends over last 14 posts, ranging from 21 to 38 seconds"></canvas></div>
         <div class="card s6"><div class="title">100% Completion Rate</div><canvas id="bars" aria-label="Bar chart showing completion rates: 45% for videos under 30 seconds, 24% for 60-90 second videos"></canvas></div>
         <div class="card s6"><div class="title">Traffic Sources</div><canvas id="pie" aria-label="Pie chart showing traffic sources: For You 62%, Search 24%, Profile 8%, Other 6%"></canvas></div>
+        <div class="card s12"><div class="title">30-Day Execution Schedule</div><canvas id="gantt" aria-label="Gantt chart showing 30-day TikTok execution plan"></canvas></div>
       </div>
     </section>
 
-    <section class="view hidden" id="psychology" role="tabpanel" aria-labelledby="psychology-tab">
+    <section class="view hidden" id="psychology" role="tabpanel" aria-labelledby="tab-psychology">
       <div class="grid">
         <div class="card s12"><div class="title">Behavioral Psychology Framework</div>
           <ul class="muted"><li><strong>Anchoring:</strong> First impression pricing creates value perception</li><li><strong>Social Proof:</strong> "30K students using this system" builds credibility</li><li><strong>Scarcity:</strong> "Only 2 left" triggers urgency and FOMO</li><li><strong>Loss Aversion:</strong> "Don’t miss out" 2x more powerful than gains</li></ul>
@@ -68,7 +69,7 @@
       </div>
     </section>
 
-    <section class="view hidden" id="scripts" role="tabpanel" aria-labelledby="scripts-tab">
+    <section class="view hidden" id="scripts" role="tabpanel" aria-labelledby="tab-scripts">
       <div class="grid">
         <div class="card s6"><div class="title">Identity Bridge Script</div><div class="muted"><strong>Hook:</strong> "POV: You finally got your life together"<br><strong>Psychology:</strong> Identity aspiration + transformation triggers<br><strong>Reach:</strong> 500K-2M views</div></div>
         <div class="card s6"><div class="title">Controversial Authority</div><div class="muted"><strong>Hook:</strong> "Unpopular opinion that made me $100K"<br><strong>Psychology:</strong> Pattern interrupt + contrarian positioning<br><strong>Reach:</strong> 750K-3M views</div></div>
@@ -85,7 +86,7 @@
       </div>
     </section>
 
-    <section class="view hidden" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
+    <section class="view hidden" id="analytics" role="tabpanel" aria-labelledby="tab-analytics">
       <div class="grid">
         <div class="card s6"><div class="title">Marketing Mix Modeling (MMM)</div>
           <ul class="muted"><li><strong>Scope:</strong> Strategic, big-picture view across all channels</li><li><strong>Timeframe:</strong> Quarterly/annual analysis for budget allocation</li><li><strong>Strength:</strong> Measures TV, radio, digital + external factors</li><li><strong>Privacy-First:</strong> Uses aggregated data, not user tracking</li></ul>
@@ -103,7 +104,7 @@
       </div>
     </section>
 
-    <section class="view hidden" id="monetize" role="tabpanel" aria-labelledby="monetize-tab">
+    <section class="view hidden" id="monetize" role="tabpanel" aria-labelledby="tab-monetize">
       <div class="grid">
         <div class="card s12"><div class="title">Digital Product Profit Analysis</div>
           <div class="kpis">
@@ -124,7 +125,7 @@
       </div>
     </section>
 
-    <section class="view hidden" id="strategy" role="tabpanel" aria-labelledby="strategy-tab">
+    <section class="view hidden" id="strategy" role="tabpanel" aria-labelledby="tab-strategy">
       <div class="grid">
         <div class="card s6"><div class="title">Flywheel vs Funnel Model</div>
           <ul class="muted"><li><strong>Funnel:</strong> Linear path, customer as endpoint</li><li><strong>Flywheel:</strong> Circular, customer at center</li><li><strong>Stages:</strong> Attract → Engage → Delight</li><li><strong>Result:</strong> Delighted customers drive growth</li></ul>

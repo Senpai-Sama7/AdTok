@@ -113,10 +113,6 @@ body {
 }
 
 .view {
-  display: none;
-}
-
-.view.active {
   display: block;
 }
 

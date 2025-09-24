@@ -6,7 +6,7 @@
   "scripts": {
     "start": "python -m http.server 8000",
     "serve": "npx http-server",
-    "test": "echo 'See docs/test-report.md for comprehensive test results'",
+    "test": "node scripts/qa-check.js",
     "deploy": "gh-pages -d ."
   },
   "keywords": [
@@ -29,6 +29,7 @@
     "url": "https://github.com/your-username/tiktok-marketing-dashboard/issues"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "http-server": "^14.1.1"
   }
 }

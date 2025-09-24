@@ -2,13 +2,21 @@
 function switchToTab(tabId) {
   if (!tabId) return;
 
-  // Update button states and ARIA attributes
-  const allButtons = document.querySelectorAll('.nav button, .tabs button');
-  allButtons.forEach(button => {
+  // Update sidebar tab states and ARIA attributes
+  const navButtons = document.querySelectorAll('.nav button');
+  navButtons.forEach(button => {
     const isActive = button.dataset.tab === tabId;
     button.classList.toggle('active', isActive);
     button.setAttribute('aria-selected', isActive.toString());
     button.setAttribute('tabindex', isActive ? '0' : '-1');
+  });
+
+  // Update header shortcut buttons
+  const shortcutButtons = document.querySelectorAll('.tabs button');
+  shortcutButtons.forEach(button => {
+    const isActive = button.dataset.tab === tabId;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive.toString());
   });
 
   // Update panel visibility
@@ -228,7 +236,7 @@ function drawGanttChart(canvasId, tasks) {
 function initializeAllCharts() {
   try {
     drawLineChart('line', [21, 23, 24, 22, 26, 28, 29, 27, 30, 33, 31, 34, 36, 38]);
-    drawBarChart('bars', ['<30s', '6090s'], [0.45, 0.24]);
+    drawBarChart('bars', ['<30s', '60-90s'], [0.45, 0.24]);
     drawPieChart('pie', [
       {k: 'For You', v: 62},
       {k: 'Search', v: 24},
@@ -241,7 +249,7 @@ function initializeAllCharts() {
       {name: 'Batch 15 videos', start: 0, len: 7},
       {name: 'Go LIVE x2', start: 7, len: 7},
       {name: 'Spark Ads test', start: 14, len: 7},
-      {name: 'Series / e1min focus', start: 14, len: 7},
+      {name: 'Series / 1-min focus', start: 14, len: 7},
       {name: 'Creator Marketplace', start: 21, len: 7}
     ];
 
