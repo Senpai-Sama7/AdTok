@@ -1,0 +1,88 @@
+diff --git a/src/charts.js b/src/charts.js
+--- a/src/charts.js
++++ b/src/charts.js
+@@
+-const chartTheme = Object.freeze({
+-  borderColor: 'rgba(255,255,255,.25)',
+-  fillColor: '#E9EEF7',
+-  labelColor: 'rgba(233,238,247,.8)',
+-  legendColor: 'rgba(233,238,247,.8)',
+-  font: '12px Inter,sans-serif'
+-});
++const chartTheme = Object.freeze({
++  borderColor: 'rgba(255,255,255,.25)',
++  fillColor: '#E9EEF7',
++  labelColor: 'rgba(233,238,247,.8)',
++  legendColor: 'rgba(233,238,247,.8)',
++  font: '12px Inter,sans-serif',
++  segmentColors: ['#d4756b', '#4a9b8e', '#e8a87c', '#c27664', '#5fb3a3', '#f4c2a1']
++});
++
++const DEFAULT_CANVAS_HEIGHT = 160;
++
++function prepareCanvas(target, height = DEFAULT_CANVAS_HEIGHT) {
++  const { canvas, context } = target;
++  const width = canvas.clientWidth || canvas.parentElement?.clientWidth || 0;
++
++  if (!width || !height) {
++    return null;
++  }
++
++  const dpr = window.devicePixelRatio || 1;
++  const pixelWidth = Math.max(1, Math.round(width * dpr));
++  const pixelHeight = Math.max(1, Math.round(height * dpr));
++
++  canvas.style.width = '100%';
++  canvas.style.height = `${height}px`;
++
++  if (canvas.width !== pixelWidth) {
++    canvas.width = pixelWidth;
++  }
++  if (canvas.height !== pixelHeight) {
++    canvas.height = pixelHeight;
++  }
++
++  context.setTransform(1, 0, 0, 1, 0, 0);
++  context.scale(dpr, dpr);
++
++  return { canvas, context, width, height };
++}
+@@
+-  const { canvas, context } = target;
+-  const canvasWidth = (canvas.width = canvas.clientWidth);
+-  const canvasHeight = (canvas.height = 160);
++  if (!dataPoints.length) return;
++
++  const prepared = prepareCanvas(target);
++  if (!prepared) return;
++
++  const { context, width: canvasWidth, height: canvasHeight } = prepared;
+@@
+-    context.fillStyle = chartTheme.fillColor;
+-    context.fillRect(x, canvasHeight - 8 - barHeight, barWidth, barHeight);
++    const barColor = chartTheme.segmentColors[index % chartTheme.segmentColors.length] || chartTheme.fillColor;
++    context.fillStyle = barColor;
++    context.fillRect(x, canvasHeight - 8 - barHeight, barWidth, barHeight);
+@@
+-  segments.forEach(segment => {
++  segments.forEach((segment, index) => {
+@@
+-    context.fillStyle = chartTheme.fillColor;
++    const fillColor = chartTheme.segmentColors[index % chartTheme.segmentColors.length] || chartTheme.fillColor;
++    context.fillStyle = fillColor;
+@@
+-  context.fillStyle = chartTheme.legendColor;
+-  context.font = chartTheme.font;
+-  segments.forEach((segment, index) => {
+-    context.fillText(`${segment.k} ${segment.v}%`, canvasWidth * 0.6, 26 + 16 * index);
+-  });
++  const legendX = canvasWidth * 0.6;
++  context.font = chartTheme.font;
++  segments.forEach((segment, index) => {
++    const legendY = 26 + 16 * index;
++    const fillColor = chartTheme.segmentColors[index % chartTheme.segmentColors.length] || chartTheme.fillColor;
++    context.fillStyle = fillColor;
++    context.fillRect(legendX - 12, legendY - 9, 8, 8);
++    context.fillStyle = chartTheme.legendColor;
++    context.fillText(`${segment.k} ${segment.v}%`, legendX, legendY);
++  });

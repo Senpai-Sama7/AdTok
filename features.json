@@ -1,0 +1,44 @@
+{
+  "features": [
+    {
+      "id": "FEAT-001",
+      "name": "Production build emits relative asset URLs",
+      "area": "build",
+      "run": "npm run build",
+      "expected": [
+        "dist/index.html references ./assets/ URLs",
+        "vite build completes without errors"
+      ]
+    },
+    {
+      "id": "FEAT-002",
+      "name": "Automated QA gate verifies structure & accessibility",
+      "area": "qa",
+      "run": "npm test",
+      "expected": [
+        "All required files reported as Found",
+        "QA gate ends with 'All automated QA checks passed.'"
+      ]
+    },
+    {
+      "id": "FEAT-003",
+      "name": "Tab navigation maintains aria state across sidebar and header",
+      "area": "ui-navigation",
+      "run": "npm run test:smoke",
+      "expected": [
+        "Playwright test 'sidebar navigation updates aria state and reveals panel' passes",
+        "aria-selected toggles true/false per active tab"
+      ]
+    },
+    {
+      "id": "FEAT-004",
+      "name": "Charts render crisply at device pixel ratio",
+      "area": "ui-charts",
+      "run": "npm run test:smoke",
+      "expected": [
+        "Playwright test 'charts initialize with non-zero canvas dimensions' passes",
+        "Canvas width attributes remain > 0 after initialization"
+      ]
+    }
+  ]
+}

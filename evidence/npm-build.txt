@@ -1,0 +1,13 @@
+
+> tiktok-marketing-dashboard@1.0.0 build
+> vite build
+
+vite v5.4.20 building for production...
+transforming...
+✓ 6 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                 12.69 kB │ gzip: 3.70 kB
+dist/assets/index-BWxy7NQ5.css   7.00 kB │ gzip: 2.18 kB
+dist/assets/index-B1Nnl8Yd.js    5.62 kB │ gzip: 2.41 kB
+✓ built in 199ms

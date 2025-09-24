@@ -5,10 +5,13 @@ const path = require('path');
 const repoRoot = path.resolve(__dirname, '..');
 const requiredFiles = [
   'index.html',
-  path.join('assets', 'styles.css'),
-  path.join('assets', 'app.js'),
+  path.join('src', 'styles', 'main.css'),
+  path.join('src', 'main.js'),
+  path.join('src', 'tabs.js'),
+  path.join('src', 'charts.js'),
   path.join('docs', 'test-report.md'),
-  path.join('.github', 'workflows', 'deploy.yml')
+  path.join('.github', 'workflows', 'deploy.yml'),
+  'vite.config.mjs'
 ];
 
 let failed = false;
@@ -46,15 +49,19 @@ if (failed) {
 }
 
 const indexHtml = readFile('index.html');
-const stylesheet = readFile(path.join('assets', 'styles.css'));
-const appJs = readFile(path.join('assets', 'app.js'));
+const stylesheet = readFile(path.join('src', 'styles', 'main.css'));
+const mainJs = readFile(path.join('src', 'main.js'));
+const tabsJs = readFile(path.join('src', 'tabs.js'));
+const chartsJs = readFile(path.join('src', 'charts.js'));
 const qaReport = readFile(path.join('docs', 'test-report.md'));
+const viteConfig = readFile('vite.config.mjs');
 
 // Ensure the HTML references the bundled assets and accessibility landmarks.
-expect(/assets\/styles\.css/.test(indexHtml), 'index.html links styles.css', 'index.html missing styles.css link');
-expect(/assets\/app\.js/.test(indexHtml), 'index.html links app.js', 'index.html missing app.js script');
+expect(/type="module"\s+src="\/src\/main\.js"/.test(indexHtml), 'index.html loads Vite entry module', 'index.html missing module script for /src/main.js');
 expect(/role="tablist"/.test(indexHtml), 'Navigation preserves tablist roles', 'Navigation missing tablist role');
 expect(/aria-/.test(indexHtml), 'ARIA attributes present', 'Expected ARIA attributes in index.html');
+expect(/loading="lazy"/.test(indexHtml), 'Images opt into lazy loading where applicable', 'Expected lazy-loading attributes in index.html');
+expect(/base:\s*['"]\.\//.test(viteConfig), 'vite.config.mjs sets relative base for GitHub Pages', 'Missing relative base=\'./\' in vite.config.mjs');
 
 // Verify tab panels reference existing labels and a default-visible panel is available.
 const idMatches = [...indexHtml.matchAll(/id="([^"]+)"/g)]
@@ -80,10 +87,13 @@ expect(hasVisiblePanel, 'Default tab panel visible without JavaScript', 'No visi
 // Basic checks on CSS variables to keep them discoverable.
 expect(/:root\s*{[^}]*--bg:/s.test(stylesheet), 'Design tokens defined in :root', 'Missing design tokens in styles.css');
 expect(/--brand/.test(stylesheet), 'Brand color variables present', 'Missing brand color variables');
+expect(!/[\x00-\x08\x0B-\x0C\x0E-\x1F]/.test(stylesheet), 'styles/main.css has printable characters only', 'Control characters detected in styles/main.css');
 
 // Sanity checks on the JS tab system.
-expect(/function\s+switchToTab/.test(appJs), 'Tab switcher exported', 'Tab switcher function missing');
-expect(/addEventListener\(\'keydown\'/.test(appJs), 'Keyboard navigation wired', 'Keyboard navigation handler missing');
+expect(/export\s+function\s+switchToTab/.test(tabsJs), 'Tab switcher exported', 'Tab switcher function missing');
+expect(/addEventListener\(\s*'keydown'/.test(tabsJs), 'Keyboard navigation wired', 'Keyboard navigation handler missing');
+expect(/export\s+function\s+initializeAllCharts/.test(chartsJs), 'Chart initializer exported', 'Chart initializer function missing');
+expect(!/[\x00-\x08\x0B-\x0C\x0E-\x1F]/.test(mainJs + tabsJs + chartsJs), 'Source modules contain printable characters only', 'Detected control characters in source modules');
 
 // Confirm the QA document still reads like a test report.
 expect(/Test Report:/i.test(qaReport), 'docs/test-report.md retains heading', 'Test report heading missing');

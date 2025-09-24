@@ -1,0 +1,508 @@
+/* AdTok - Modern Clay Skeuomorphic Dashboard */
+
+:root {
+  --bg: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+  --panel: #ffffff;
+  --ink: #2c1810;
+  --ink-dim: rgba(44,24,16,.7);
+  --line: rgba(44,24,16,.1);
+  --brand: #d4756b;
+  --brand-2: #4a9b8e;
+  --brand-3: #e8a87c;
+  --brand-4: #c27664;
+  --brand-5: #5fb3a3;
+  --brand-6: #f4c2a1;
+  --brand-7: #a8d5ca;
+  --brand-8: #d4756b;
+  --brand-9: #6bb6a8;
+  --brand-10: #e6b894;
+  --clay-shadow: 0 8px 32px rgba(212,117,107,.15);
+  --clay-shadow-hover: 0 12px 48px rgba(212,117,107,.25);
+  --clay-inset: inset 0 2px 4px rgba(255,255,255,.8), inset 0 -2px 4px rgba(212,117,107,.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100%;
+}
+
+.side {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 24px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--line);
+  box-shadow: var(--clay-shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.brand__img {
+  width: 44px;
+  height: 44px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: var(--clay-inset);
+  border: 2px solid rgba(255,255,255,.9);
+}
+
+.brand__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.4px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav button {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  color: var(--ink-dim);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.nav button:hover {
+  background: rgba(212,117,107,.08);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.nav button.active {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-4) 100%);
+  color: white;
+  box-shadow: var(--clay-shadow);
+  transform: translateY(-2px);
+}
+
+.main {
+  padding: 32px;
+  overflow-y: auto;
+}
+
+.hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+  margin-bottom: 32px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.85);
+  box-shadow: var(--clay-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hdr::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/images/adtok-logo-wave.jpg') center/cover no-repeat;
+  opacity: 0.18;
+}
+
+.hdr__content,
+.hdr__actions {
+  position: relative;
+  z-index: 1;
+}
+
+.hdr__badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hdr__image {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: var(--clay-shadow);
+  border: 3px solid rgba(255,255,255,.85);
+}
+
+.hdr__title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.hdr__subtitle {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+.view {
+  display: block;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header p {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card {
+  background: var(--panel);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--clay-shadow);
+  border: 1px solid rgba(255,255,255,.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+.card .title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card .subtitle {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.s12 { grid-column: span 12; }
+.s6 { grid-column: span 6; }
+.s4 { grid-column: span 4; }
+.s3 { grid-column: span 3; }
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--brand);
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+
+.metric-change {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.metric-change.positive {
+  background: rgba(74,155,142,.1);
+  color: var(--brand-2);
+}
+
+.metric-change.negative {
+  background: rgba(212,117,107,.1);
+  color: var(--brand);
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(212,117,107,.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.script-template {
+  padding: 24px;
+  background: rgba(255,255,255,.6);
+  border-radius: 16px;
+  margin: 16px 0;
+  border: 1px solid rgba(212,117,107,.1);
+  transition: all 0.3s ease;
+}
+
+.script-template:hover {
+  background: rgba(255,255,255,.8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212,117,107,.1);
+}
+
+.script-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+
+.script-reach {
+  font-size: 14px;
+  color: var(--brand-2);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.script-description {
+  color: var(--ink-dim);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.script-example {
+  background: rgba(212,117,107,.05);
+  padding: 16px;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.psychology-principle {
+  padding: 20px;
+  background: rgba(255,255,255,.7);
+  border-radius: 16px;
+  margin: 12px 0;
+  border: 1px solid rgba(212,117,107,.1);
+}
+
+.principle-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+
+.principle-description {
+  color: var(--ink-dim);
+  line-height: 1.6;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  background: rgba(255,255,255,.65);
+  padding: 6px;
+  border-radius: 14px;
+  box-shadow: var(--clay-inset);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: rgba(212,117,107,.08);
+  border: 1px solid rgba(212,117,107,.16);
+  border-radius: 12px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab:hover {
+  background: rgba(212,117,107,.12);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.tab.active,
+.tab[aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-4) 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: var(--clay-shadow);
+  transform: translateY(-2px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  
+  .side {
+    position: relative;
+    height: auto;
+    padding: 16px;
+  }
+  
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+  
+  .nav button {
+    white-space: nowrap;
+    min-width: fit-content;
+  }
+  
+  .main {
+    padding: 20px;
+  }
+
+  .brand {
+    margin-bottom: 24px;
+  }
+
+  .hdr {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .hdr::before {
+    background-image: url('/assets/images/adtok-logo-mobile.jpg');
+    opacity: 0.22;
+  }
+
+  .hdr__image {
+    width: 56px;
+    height: 56px;
+  }
+
+  .tabs {
+    justify-content: flex-start;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .s12, .s6, .s4, .s3 {
+    grid-column: span 1;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles */
+button:focus-visible,
+.nav button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --ink: #000000;
+    --ink-dim: #333333;
+    --line: #666666;
+  }
+}
