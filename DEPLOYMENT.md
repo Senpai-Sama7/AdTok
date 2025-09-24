@@ -13,8 +13,10 @@ tiktok-marketing-dashboard
 # Clone this folder or upload all files to your new repository
 # Make sure to include all files and folders, especially:
 # - index.html
-# - assets/ (with styles.css and app.js)
+# - src/ (Vite source: main.js, tabs.js, charts.js, styles/)
+# - public/assets/ (images, videos, static assets)
 # - .github/workflows/deploy.yml
+# - vite.config.js
 ```
 
 ### 3. Enable GitHub Pages
@@ -24,7 +26,7 @@ tiktok-marketing-dashboard
 4. Save the changes
 
 ### 4. Automatic Deployment
-- Every push to the `main` branch installs dependencies, runs `npm test`, and then deploys automatically
+- Every push to the `main` branch installs dependencies, runs `npm test`, builds with Vite, and then deploys automatically
 - Check the "Actions" tab to see deployment status
 - Your site will be live at: `https://your-username.github.io/tiktok-marketing-dashboard`
 
@@ -47,40 +49,42 @@ Value: your-username.github.io
 
 ## Local Development
 
-### Option 1: Python Server
+### Option 1: Vite Dev Server
 ```bash
 cd tiktok-marketing-dashboard
-python -m http.server 8000
-# Open http://localhost:8000
+npm install
+npm run dev
+# Open the URL printed by Vite (typically http://localhost:5173)
 ```
 
-### Option 2: Node.js Server
+### Option 2: Preview Production Build
 ```bash
-npm install -g http-server
-http-server
-# Open http://localhost:8080
+npm run build
+npm run preview
+# Open http://localhost:4173
 ```
-
-### Option 3: VS Code Live Server
-1. Install "Live Server" extension
-2. Right-click `index.html`
-3. Select "Open with Live Server"
 
 ## Troubleshooting
 
 ### Common Issues
-1. **404 Error**: Check that `index.html` is in the root directory
-2. **CSS Not Loading**: Verify `assets/styles.css` path in index.html
-3. **JS Not Working**: Check `assets/app.js` path and browser console
-4. **Deployment Failed**: Check Actions tab for error details
+1. **404 Error**: Check that `index.html` is in the root directory and Vite build artifacts exist in `dist/`
+2. **CSS Not Loading**: Confirm `src/styles/main.css` is imported in `src/main.js`
+3. **JS Not Working**: Ensure `<script type="module" src="/src/main.js">` is present in `index.html`
+4. **Deployment Failed**: Check Actions tab for `npm test` or `npm run build` failures
 
 ### File Structure Verification
 ```
 tiktok-marketing-dashboard/
 ├── index.html              ✅ Required
-├── assets/
-│   ├── styles.css          ✅ Required
-│   └── app.js              ✅ Required
+├── src/
+│   ├── main.js             ✅ Vite entry
+│   ├── tabs.js             ✅ Tab logic
+│   ├── charts.js           ✅ Chart utilities
+│   └── styles/main.css     ✅ Design system
+├── public/
+│   └── assets/
+│       ├── images/         ✅ Static imagery
+│       └── videos/         🎥 Optional media
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml      ✅ Required for auto-deploy

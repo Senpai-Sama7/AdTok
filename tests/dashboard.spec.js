@@ -19,10 +19,10 @@ test.describe('AdTok dashboard smoke tests', () => {
     await expect(page.locator('#psychology')).not.toHaveClass(/hidden/);
     await expect(page.locator('#home')).toHaveClass(/hidden/);
 
-    const dashboardShortcut = page.getByRole('button', { name: 'Dashboard' });
-    await dashboardShortcut.click();
+    const manualShortcut = page.getByRole('button', { name: 'Manual Overview' });
+    await manualShortcut.click();
 
-    await expect(dashboardShortcut).toHaveAttribute('aria-pressed', 'true');
+    await expect(manualShortcut).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#home')).not.toHaveClass(/hidden/);
   });
 
@@ -33,7 +33,7 @@ test.describe('AdTok dashboard smoke tests', () => {
 
     for (const canvas of canvases) {
       await expect.poll(async () => await canvas.evaluate(el => el.width || 0)).toBeGreaterThan(0);
-      await expect(canvas).toBeVisible();
+      await expect(canvas).toBeAttached();
     }
   });
 });

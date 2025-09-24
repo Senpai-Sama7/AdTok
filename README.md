@@ -81,23 +81,25 @@ git push origin main
 git clone https://github.com/your-username/tiktok-marketing-dashboard.git
 cd tiktok-marketing-dashboard
 
-# Serve locally (Python)
-python -m http.server 8000
-
-# Or with Node.js
-npx http-server
-
-# Open http://localhost:8000
+npm install
+npm run dev
+# Vite prints the local URL (default http://localhost:5173)
 ```
 
 ## 📁 Project Structure
 
 ```
 tiktok-marketing-dashboard/
-├── index.html              # Main dashboard file
-├── assets/
-│   ├── styles.css          # Stylesheet with dark neon theme
-│   └── app.js              # Interactive functionality
+├── index.html              # Root HTML (loads /src/main.js)
+├── src/
+│   ├── main.js             # Vite entry point
+│   ├── tabs.js             # Tab navigation logic
+│   ├── charts.js           # Canvas rendering utilities
+│   └── styles/main.css     # Design system and layout
+├── public/
+│   └── assets/
+│       ├── images/         # Static imagery (logos, textures)
+│       └── videos/         # Optional media assets
 ├── docs/
 │   └── test-report.md      # Quality assurance report
 ├── .github/
@@ -110,7 +112,7 @@ tiktok-marketing-dashboard/
 ## 🎨 Customization
 
 ### Color Scheme
-The dashboard uses CSS custom properties for easy theming:
+The dashboard uses CSS custom properties (see `src/styles/main.css`) for easy theming:
 
 ```css
 :root {

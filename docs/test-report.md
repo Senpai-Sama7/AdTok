@@ -119,16 +119,17 @@
 ## Performance Metrics
 
 ### 📊 **Load Performance**
-- **File Sizes**: HTML: 8.2KB | CSS: 7.1KB | JS: 6.4KB
-- **Total Bundle**: ~22KB (excellent for rich dashboard)
+- **Vite Build (npm run build, 2025-09-24)**: `dist/index.html` 12.7KB (gzip 3.7KB) | `dist/assets/index-CPrJTJFa.css` 7.0KB (gzip 2.2KB) | `dist/assets/index-BUNXybPk.js` 4.9KB (gzip 2.1KB)
+- **Total Bundle**: ~25KB pre-gzip; ~8.0KB gzip combined — still well under lightweight dashboard targets
 - **External Dependencies**: 0 (fully self-contained)
-- **Caching Strategy**: External CSS/JS files enable browser caching
+- **Caching Strategy**: Vite generates hashed filenames for long-term caching
 
 ### ⚡ **Runtime Performance**
 - **Canvas Optimization**: RequestAnimationFrame for smooth rendering
 - **Resize Debouncing**: 150ms delay prevents excessive redraws
 - **Memory Efficiency**: Proper cleanup and error handling
 - **Chart Rendering**: Optimized drawing algorithms with fallbacks
+- **Lighthouse**: UNVERIFIED (run `npm run dev` + `npx lighthouse http://localhost:5173 --preset=desktop` to capture next baseline)
 
 ---
 

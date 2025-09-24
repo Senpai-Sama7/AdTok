@@ -250,6 +250,58 @@ canvas {
   letter-spacing: 0.5px;
 }
 
+.manual-embed .embed-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.manual-embed .embed-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--clay-inset);
+}
+
+.embed-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #ffffff;
+}
+
+.manual-embed a,
+.manual-audio a {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.manual-embed a:focus-visible,
+.manual-embed a:hover,
+.manual-audio a:focus-visible,
+.manual-audio a:hover {
+  text-decoration: underline;
+}
+
+.manual-audio__player {
+  width: 100%;
+  margin-top: 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.85);
+  box-shadow: var(--clay-shadow);
+}
+
+@media (max-width: 980px) {
+  .manual-embed .embed-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .s12 { grid-column: span 12; }
 .s6 { grid-column: span 6; }
 .s4 { grid-column: span 4; }
@@ -505,4 +557,10 @@ button:focus-visible,
     --ink-dim: #333333;
     --line: #666666;
   }
+}
+.manual-embed .embed-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0;
 }

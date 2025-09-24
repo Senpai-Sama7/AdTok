@@ -4,10 +4,12 @@
   "description": "Professional-grade marketing dashboard combining TikTok strategy with behavioral psychology and data science",
   "main": "index.html",
   "scripts": {
-    "start": "python -m http.server 8000",
-    "serve": "npx http-server",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "node scripts/qa-check.js",
-    "deploy": "gh-pages -d ."
+    "test:smoke": "playwright test",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "tiktok",
@@ -29,7 +31,9 @@
     "url": "https://github.com/your-username/tiktok-marketing-dashboard/issues"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
     "gh-pages": "^6.1.1",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "vite": "^5.0.10"
   }
 }

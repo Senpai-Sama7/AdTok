@@ -37,8 +37,8 @@ jobs:
       - name: Run QA checks
         run: npm test
 
-      - name: Clean workspace
-        run: rm -rf node_modules
+      - name: Build site
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment

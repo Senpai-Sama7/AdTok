@@ -1,10 +1,16 @@
+const brandPalette = ['#d4756b', '#4a9b8e', '#e8a87c', '#c27664', '#5fb3a3', '#f4c2a1'];
+
 const chartTheme = Object.freeze({
-  borderColor: 'rgba(255,255,255,.25)',
-  fillColor: '#E9EEF7',
-  labelColor: 'rgba(233,238,247,.8)',
-  legendColor: 'rgba(233,238,247,.8)',
+  borderColor: 'rgba(44,24,16,.15)',
+  gridColor: 'rgba(44,24,16,.08)',
+  lineColor: '#d4756b',
+  pointColor: '#d4756b',
+  textColor: '#2c1810',
+  mutedTextColor: 'rgba(44,24,16,.7)',
   font: '12px Inter,sans-serif',
-  segmentColors: ['#d4756b', '#4a9b8e', '#e8a87c', '#c27664', '#5fb3a3', '#f4c2a1']
+  barColors: brandPalette,
+  pieColors: brandPalette,
+  ganttColors: ['#4a9b8e', '#d4756b', '#e8a87c', '#5fb3a3']
 });
 
 const DEFAULT_CANVAS_HEIGHT = 160;
@@ -82,7 +88,7 @@ function drawLineChart(canvasId, dataPoints) {
       context.lineTo(x, y);
     }
   });
-  context.strokeStyle = chartTheme.fillColor;
+  context.strokeStyle = chartTheme.lineColor;
   context.lineWidth = 2;
   context.stroke();
 
@@ -91,7 +97,7 @@ function drawLineChart(canvasId, dataPoints) {
     const y = canvasHeight - 8 - (value - minValue) * stepY;
     context.beginPath();
     context.arc(x, y, 3, 0, Math.PI * 2);
-    context.fillStyle = chartTheme.fillColor;
+    context.fillStyle = chartTheme.pointColor;
     context.fill();
   });
 }
@@ -117,11 +123,11 @@ function drawBarChart(canvasId, labels, values) {
     const x = index * (canvasWidth / values.length) + (canvasWidth / values.length - barWidth) / 2;
     const barHeight = (canvasHeight - 16) * (value / maxValue);
 
-    const barColor = chartTheme.segmentColors[index % chartTheme.segmentColors.length] || chartTheme.fillColor;
+    const barColor = chartTheme.barColors[index % chartTheme.barColors.length];
     context.fillStyle = barColor;
     context.fillRect(x, canvasHeight - 8 - barHeight, barWidth, barHeight);
 
-    context.fillStyle = chartTheme.labelColor;
+    context.fillStyle = chartTheme.textColor;
     context.font = chartTheme.font;
     context.textAlign = 'center';
     context.fillText(labels[index], x + barWidth / 2, canvasHeight - 4);
@@ -155,7 +161,7 @@ function drawPieChart(canvasId, segments) {
     context.moveTo(centerX, centerY);
     context.arc(centerX, centerY, radius, currentAngle, endAngle);
     context.closePath();
-    const fillColor = chartTheme.segmentColors[index % chartTheme.segmentColors.length] || chartTheme.fillColor;
+    const fillColor = chartTheme.pieColors[index % chartTheme.pieColors.length];
     context.fillStyle = fillColor;
     context.globalAlpha = 0.9;
     context.fill();
@@ -168,10 +174,10 @@ function drawPieChart(canvasId, segments) {
   context.font = chartTheme.font;
   segments.forEach((segment, index) => {
     const legendY = 26 + 16 * index;
-    const fillColor = chartTheme.segmentColors[index % chartTheme.segmentColors.length] || chartTheme.fillColor;
+    const fillColor = chartTheme.pieColors[index % chartTheme.pieColors.length];
     context.fillStyle = fillColor;
     context.fillRect(legendX - 12, legendY - 9, 8, 8);
-    context.fillStyle = chartTheme.legendColor;
+    context.fillStyle = chartTheme.textColor;
     context.fillText(`${segment.k} ${segment.v}%`, legendX, legendY);
   });
 }
@@ -196,10 +202,11 @@ function drawGanttChart(canvasId, tasks) {
     const startX = 20 + (canvasWidth - 40) * (task.start / maxDays);
     const barWidth = (canvasWidth - 40) * (task.len / maxDays);
 
-    context.fillStyle = chartTheme.fillColor;
+    const ganttColor = chartTheme.ganttColors[index % chartTheme.ganttColors.length];
+    context.fillStyle = ganttColor;
     context.fillRect(startX, y, barWidth, 12);
 
-    context.fillStyle = chartTheme.labelColor;
+    context.fillStyle = chartTheme.textColor;
     context.font = chartTheme.font;
     context.fillText(task.name, 20, y + 10);
   });
