@@ -1,3 +1,41 @@
+/* Accessibility & performance guardrails */
+:root {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  --focus-ring-color: #1a73e8;
+  --sidebar-width: 17.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--panel, #ffffff);
+  color: var(--ink, #2c1810);
+  font-weight: 600;
+  border-radius: 999px;
+  box-shadow: var(--clay-shadow, 0 8px 32px rgba(212,117,107,.15));
+  transition: top 0.2s ease;
+  z-index: 1000;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 3px solid var(--focus-ring-color);
+}
+
 /* AdTok - Modern Clay Skeuomorphic Dashboard */
 
 :root {
@@ -40,7 +78,7 @@ body {
 
 .shell {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100%;
 }
 
@@ -48,6 +86,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+  width: var(--sidebar-width);
   padding: 24px;
   background: rgba(255,255,255,.95);
   backdrop-filter: blur(20px);
@@ -135,7 +174,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/assets/images/adtok-logo-wave.jpg') center/cover no-repeat;
+  background: var(--hero-background-image, none) center/cover no-repeat;
   opacity: 0.18;
 }
 
@@ -507,7 +546,7 @@ canvas {
   }
 
   .hdr::before {
-    background-image: url('/assets/images/adtok-logo-mobile.jpg');
+    background: var(--hero-background-image, none) center/cover no-repeat;
     opacity: 0.22;
   }
 
@@ -534,20 +573,11 @@ canvas {
   }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
 /* Focus styles */
 button:focus-visible,
 .nav button:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 2px;
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 3px;
 }
 
 /* High contrast mode */

@@ -7,14 +7,24 @@
   <meta property="og:title" content="TikTok Growth Master Manual"/>
   <meta property="og:description" content="App-style manual with TikTok marketing strategies, analytics, and 30-day execution plan."/>
   <meta property="og:type" content="website"/>
+  <link rel="canonical" href="https://senpai-sama7.github.io/AdTok/"/>
+  <meta property="og:url" content="https://senpai-sama7.github.io/AdTok/"/>
+  <meta property="og:image" content="https://senpai-sama7.github.io/assets/images/adtok-og.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="TikTok Growth Master Manual"/>
+  <meta name="twitter:description" content="App-style manual with TikTok marketing strategies, analytics, and 30-day execution plan."/>
+  <meta name="twitter:image" content="https://senpai-sama7.github.io/assets/images/adtok-og.jpg"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'nonce-adtok-base'; connect-src 'self'"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
   <title>TikTok Growth Master Manual</title>
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
   <aside class="side" role="navigation" aria-label="Main navigation">
     <div class="brand">
-      <img src="/assets/images/adtok-logo-3d.png" alt="AdTok logo" class="brand__img" decoding="async" loading="lazy"/>
+      <img id="logo" src="assets/images/adtok-logo-3d.png" alt="AdTok 3D wordmark" class="brand__img" decoding="async" width="160" height="160"/>
       <span class="brand__title">TikTok Growth Master Manual</span>
     </div>
     <nav class="nav" role="tablist" aria-label="Manual sections">
@@ -26,11 +36,11 @@
       <button id="tab-strategy" type="button" data-tab="strategy" role="tab" aria-selected="false" aria-controls="strategy" tabindex="-1">Strategy</button>
     </nav>
   </aside>
-  <main class="main" role="main">
+  <main id="main" class="main" role="main">
     <div class="hdr">
       <div class="hdr__content">
         <div class="hdr__badge">
-          <img src="/assets/images/adtok-logo-mobile.jpg" alt="TikTok Growth Master Manual mobile preview" class="hdr__image" decoding="async" loading="lazy"/>
+          <img id="mobilePreview" src="assets/images/adtok-logo-mobile.jpg" alt="AdTok mobile preview interface" class="hdr__image" decoding="async" loading="lazy" width="240" height="240"/>
           <div>
             <strong class="hdr__title">TikTok Growth Master Manual</strong>
             <span class="hdr__subtitle muted">App‑style manual</span>
@@ -69,13 +79,13 @@
               <iframe class="embed-frame" src="https://wirehaired-tail-7ea.notion.site/ebd/278a0505e282808cb012c5adf5e7df03" title="TikTok Growth Master Manual in Notion" loading="lazy" referrerpolicy="no-referrer"></iframe>
             </div>
           </div>
-          <p class="muted">Prefer opening in a new tab? Explore the <a href="https://www.perplexity.ai/page/tiktok-growth-master-manual-.DYHZWovTbq0WLwwVCIBog#0" target="_blank" rel="noopener">Perplexity research brief</a> or the <a href="https://wirehaired-tail-7ea.notion.site/ebd/278a0505e282808cb012c5adf5e7df03" target="_blank" rel="noopener">Notion execution workspace</a>.</p>
+          <p class="muted">Prefer opening in a new tab? Explore the <a href="https://www.perplexity.ai/page/tiktok-growth-master-manual-.DYHZWovTbq0WLwwVCIBog#0" target="_blank" rel="noopener noreferrer">Perplexity research brief</a> or the <a href="https://wirehaired-tail-7ea.notion.site/ebd/278a0505e282808cb012c5adf5e7df03" target="_blank" rel="noopener noreferrer">Notion execution workspace</a>.</p>
         </div>
         <div class="card s12 manual-audio"><div class="title">Audio Companion — TikTok Algorithm Secrets</div>
           <p class="muted">Listen to the narrated breakdown of hooks, SEO structure, and 2025 creator playbook highlights while you work through the manual.</p>
-          <audio controls preload="metadata" class="manual-audio__player">
-            <source src="/assets/audio/TikTok Algorithm Secrets Revealed_ Hooks, SEO, and the 2025 Creator Growth Manual.mp3" type="audio/mpeg"/>
-            Your browser does not support the audio element. <a href="/assets/audio/TikTok%20Algorithm%20Secrets%20Revealed_%20Hooks,%20SEO,%20and%20the%202025%20Creator%20Growth%20Manual.mp3">Download the audio guide</a>.
+          <audio id="audioSrc" controls preload="metadata" class="manual-audio__player">
+            <source src="assets/audio/tiktok-algorithm-secrets.mp3" type="audio/mpeg"/>
+            Your browser does not support the audio element. <a id="audioDownload" href="assets/audio/tiktok-algorithm-secrets.mp3" rel="noopener noreferrer">Download the audio guide</a>.
           </audio>
         </div>
       </div>
@@ -177,5 +187,42 @@
 
   </main>
 </div>
+<script nonce="adtok-base">
+  (function () {
+    const isSubpath = window.location.pathname.includes('/AdTok/');
+    const originBase = isSubpath ? 'https://senpai-sama7.github.io/' : './';
+    const assetBase = isSubpath ? originBase + 'AdTok/' : originBase;
+    const manifestEl = document.querySelector('link[rel="manifest"]');
+    if (manifestEl) {
+      manifestEl.setAttribute('href', (isSubpath ? '/AdTok/' : './') + 'manifest.webmanifest');
+    }
+    const assignments = [
+      { id: 'logo', attr: 'src', path: 'assets/images/adtok-logo-3d.png' },
+      { id: 'mobilePreview', attr: 'src', path: 'assets/images/adtok-logo-mobile.jpg' },
+      { id: 'audioSrc', attr: 'src', path: 'assets/audio/tiktok-algorithm-secrets.mp3' },
+      { id: 'audioDownload', attr: 'href', path: 'assets/audio/tiktok-algorithm-secrets.mp3' }
+    ];
+    assignments.forEach(({ id, attr, path }) => {
+      const node = document.getElementById(id);
+      if (node) {
+        node.setAttribute(attr, assetBase + path);
+      }
+    });
+    const audioDownload = document.getElementById('audioDownload');
+    if (audioDownload) {
+      audioDownload.setAttribute('download', 'tiktok-algorithm-secrets.mp3');
+    }
+    document.documentElement.style.setProperty(
+      '--hero-background-image',
+      `url(${assetBase}assets/images/adtok-logo-wave.jpg)`
+    );
+    if ('serviceWorker' in navigator) {
+      const swPath = isSubpath ? '/AdTok/sw.js' : '/sw.js';
+      navigator.serviceWorker.register(swPath).catch((err) => {
+        console.error('Service worker registration failed', err);
+      });
+    }
+  })();
+</script>
 </body>
 </html>
