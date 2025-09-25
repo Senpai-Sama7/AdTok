@@ -275,18 +275,48 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let charts = {};
+
     function renderCharts() {
         Object.values(charts).forEach(chart => chart.destroy());
+        charts = {};
+
+        const activeTabContent = document.querySelector('.tab-content:not(.hidden)');
+        if (!activeTabContent) return;
+        
         const commonOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F', font: { family: "'Inter', sans-serif"} } }, x: { grid: { display: false }, ticks: { color: '#A89E93', font: { family: "'Inter', sans-serif"} } } } };
         
-        const watchTimeCtx = document.getElementById('watchTimeChart')?.getContext('2d');
-        if (watchTimeCtx) charts.watchTime = new Chart(watchTimeCtx, { type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] }, options: commonOptions });
-        
-        const trafficSourceCtx = document.getElementById('trafficSourceChart')?.getContext('2d');
-        if (trafficSourceCtx) charts.trafficSource = new Chart(trafficSourceCtx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'], borderColor: '#F4F1ED', borderWidth: 6 }] }, options: { ...commonOptions, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12, family: "'Inter', sans-serif" } } } } } });
-        
-        const signalWeightsCtx = document.getElementById('signalWeightsChart')?.getContext('2d');
-        if (signalWeightsCtx) charts.signalWeights = new Chart(signalWeightsCtx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'] }] }, options: { ...commonOptions, indexAxis: 'y', scales: { ...commonOptions.scales, y: { ...commonOptions.scales.y, ticks: { ...commonOptions.scales.y.ticks, color: '#4A443F', font: { weight: '600', family: "'Inter', sans-serif" } } } } } });
+        activeTabContent.querySelectorAll('canvas').forEach(canvas => {
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            const chartId = canvas.id;
+            
+            if (chartId === 'watchTimeChart') {
+                charts.watchTime = new Chart(ctx, { type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] }, options: commonOptions });
+            }
+            
+            if (chartId === 'trafficSourceChart') {
+                charts.trafficSource = new Chart(ctx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'], borderColor: '#F4F1ED', borderWidth: 6 }] }, options: { ...commonOptions, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12, family: "'Inter', sans-serif" } } } } } });
+            }
+            
+            if (chartId === 'signalWeightsChart') {
+                 const signalChartOptions = {
+                    ...commonOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#A89E93', font: { family: "'Inter', sans-serif" } }
+                        },
+                        y: {
+                            grid: { color: '#EAE5E0' },
+                            ticks: { color: '#4A443F', font: { weight: '600', family: "'Inter', sans-serif" } }
+                        }
+                    }
+                };
+                charts.signalWeights = new Chart(ctx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'] }] }, options: signalChartOptions });
+            }
+        });
     }
 
     function renderPlaybooks(filter = 'All') {
@@ -362,9 +392,8 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(l => l.classList.remove('active-tab'));
         document.querySelector(`.nav-link[data-tab="${tab}"]`).classList.add('active-tab');
         tabContents.forEach(content => content.classList.toggle('hidden', content.id !== tab));
-        if (tab === 'dashboard' || tab === 'algorithm') {
-            setTimeout(renderCharts, 50);
-        }
+        
+        setTimeout(renderCharts, 50);
     }
 
     navLinks.forEach(link => {
@@ -381,6 +410,14 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => sidebar.classList.remove('-translate-x-full'));
     menuClose.addEventListener('click', () => sidebar.classList.add('-translate-x-full'));
 
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            renderCharts();
+        }, 150);
+    });
+
     // Initial render
     renderCharts();
     renderPlaybooks();
@@ -392,4 +429,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
