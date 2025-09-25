@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The TikTok Growth Master Manual | 2025 Edition</title>
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The SPA is designed as a multi-tab dashboard. A persistent sidebar allows users to navigate between high-level thematic sections (Dashboard, Algorithm, Playbook, etc.), mirroring an intuitive analytics tool. The main content area for each section is a responsive grid of cards, each containing a specific piece of information (chart, text, diagram). This structure was chosen to make the dense report digestible, allowing users to get a quick overview from the main dashboard or perform deep dives into specific topics without being overwhelmed. The flow is non-linear, encouraging exploration based on the user's immediate needs (e.g., finding a script vs. understanding the algorithm). -->
-    <!-- Visualization & Content Choices: Data from the report is visualized using Chart.js for clarity and interaction. Report Info: Watch Time Trend -> Goal: Show Change -> Viz: Line Chart. Report Info: Traffic Source Breakdown -> Goal: Inform/Compare Proportions -> Viz: Doughnut Chart. Report Info: Creator Playbooks -> Goal: Organize/Inform -> Viz: Interactive cards with toggleable content. Report Info: Recommendation Stack -> Goal: Organize/Explain Process -> Viz: HTML/CSS flowchart diagram. These choices prioritize user understanding and engagement over static text, using the most appropriate visual tool for each data type. NO SVG/Mermaid used. -->
+    <title>AdTok Growth Manual | 2025 Clay Edition</title>
+    <!-- Chosen Palette: Clay Skeuomorphic Neutrals -->
+    <!-- Application Structure Plan: The SPA is a multi-section dashboard with a persistent sidebar for primary navigation. This structure organizes the vast amount of synthesized report data into logical, user-selectable themes (e.g., Algorithm, Playbook, Psychology). The main content area uses responsive cards with a tactile, clay-like appearance to present charts, text, and media. This design promotes an intuitive, non-linear exploration of a complex subject, allowing users to focus on their specific areas of interest—a more effective approach than a linear document for a strategic manual. -->
+    <!-- Visualization & Content Choices: Data from the reports is translated into interactive formats. Report Info: Core KPIs -> Goal: Inform -> Viz: Embossed Stat Cards. Report Info: Watch Time/Traffic -> Goal: Compare -> Viz: Line/Doughnut Charts (Chart.js) with soft color palettes. Report Info: Niche Playbooks -> Goal: Organize/Inform -> Viz: Filterable clay-style cards. Report Info: Recommender Stack -> Goal: Explain Process -> Viz: 3D-effect HTML/CSS flowchart. This ensures each piece of information is presented in its most engaging and understandable format, adhering to the NO SVG/Mermaid constraint. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,39 +14,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #FDFBF8; color: #38332E; }
+        body { font-family: 'Inter', sans-serif; background-color: #F4F1ED; color: #4A443F; }
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FDFBF8; }
-        ::-webkit-scrollbar-thumb { background: #D6C7B7; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #BFAD9A; }
-        .active-tab { background-color: #D4756B; color: #FFFFFF; }
+        ::-webkit-scrollbar-track { background: #F4F1ED; }
+        ::-webkit-scrollbar-thumb { background: #DCD3CB; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C9BDB3; }
+        .active-tab { background: linear-gradient(145deg, #E5988F, #D4756B); color: #FFFFFF; box-shadow: inset 2px 2px 5px #b9635a, inset -2px -2px 5px #ff877c; }
+        .nav-link:not(.active-tab):hover { background-color: #EAE5E0; }
         .chart-container { position: relative; width: 100%; max-width: 800px; margin: auto; height: 300px; max-height: 40vh; }
-        .flowchart-node { border: 2px solid #D6C7B7; background-color: #FFFFFF; padding: 0.75rem; border-radius: 0.75rem; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; }
-        .flowchart-node:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07); }
-        .flowchart-arrow { position: relative; color: #BFAD9A; }
-        .flowchart-arrow::after { content: '→'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; line-height: 1; opacity: 0.6; }
-        .kpi-card p { transition: color 0.2s; }
-        .kpi-card:hover h3, .kpi-card:hover p { color: #D4756B; }
-        .playbook-card { transition: all 0.3s ease; }
-        .playbook-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(212, 117, 107, 0.2); }
+        .clay-card { background-color: #F4F1ED; border-radius: 20px; padding: 24px; border: 1px solid #FFFFFF; box-shadow: 4px 4px 10px #DCD3CB, -4px -4px 10px #FFFFFF; transition: all 0.2s ease-in-out; }
+        .clay-card:hover { transform: translateY(-3px); box-shadow: 6px 6px 12px #DCD3CB, -6px -6px 12px #FFFFFF; }
+        .clay-button { background: #F4F1ED; border-radius: 12px; padding: 8px 16px; font-weight: 600; color: #5F574F; box-shadow: 3px 3px 7px #DCD3CB, -3px -3px 7px #FFFFFF; transition: all 0.2s ease-in-out; border: 1px solid #FFFFFF; }
+        .clay-button.active, .clay-button:hover { background: linear-gradient(145deg, #d8cbc1, #fff9f4); box-shadow: inset 2px 2px 5px #DCD3CB, inset -2px -2px 5px #FFFFFF; color: #D4756B; }
+        .clay-inset { background: #EAE5E0; box-shadow: inset 3px 3px 7px #c8beb5, inset -3px -3px 7px #ffffff; }
         details[open] summary { color: #D4756B; }
-        video, audio { border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #EAE5E0;}
+        video, audio { border-radius: 0.75rem; box-shadow: 4px 4px 10px #DCD3CB, -4px -4px 10px #FFFFFF; border: 1px solid #FFFFFF; }
     </style>
 </head>
 <body class="antialiased">
-    <div class="flex h-screen bg-[#FDFBF8]">
-        <aside class="w-64 flex-shrink-0 bg-white border-r border-[#EAE5E0] flex flex-col">
-            <div class="h-16 flex-shrink-0 flex items-center justify-center px-4 border-b border-[#EAE5E0]">
-                <h1 class="text-xl font-extrabold text-[#D4756B]">AdTok Manual</h1>
+    <div class="flex h-screen bg-[#F4F1ED]">
+        <aside class="w-64 flex-shrink-0 bg-[#F4F1ED] border-r border-[#EAE5E0] flex flex-col">
+            <div class="h-16 flex-shrink-0 flex items-center justify-center px-4">
+                 <h1 class="text-2xl font-extrabold text-[#D4756B]">AdTok</h1>
             </div>
             <nav class="flex-1 overflow-y-auto p-4 space-y-2">
                 <a href="#" data-tab="dashboard" class="nav-link group active-tab flex items-center px-3 py-2 text-sm font-semibold rounded-lg">Dashboard</a>
-                <a href="#" data-tab="algorithm" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Algorithm Decoded</a>
-                <a href="#" data-tab="playbook" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Viral Playbook</a>
-                <a href="#" data-tab="psychology" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Creator Psychology</a>
-                <a href="#" data-tab="monetization" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Monetization</a>
-                <a href="#" data-tab="casestudies" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Case Studies & Media</a>
-                <a href="#" data-tab="compliance" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Compliance & Safety</a>
+                <a href="#" data-tab="algorithm" class="nav-link group transition-colors duration-200 flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Algorithm Decoded</a>
+                <a href="#" data-tab="playbook" class="nav-link group transition-colors duration-200 flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Viral Playbook</a>
+                <a href="#" data-tab="psychology" class="nav-link group transition-colors duration-200 flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Creator Psychology</a>
+                <a href="#" data-tab="monetization" class="nav-link group transition-colors duration-200 flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Monetization</a>
+                <a href="#" data-tab="casestudies" class="nav-link group transition-colors duration-200 flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Case Studies & Media</a>
+                <a href="#" data-tab="compliance" class="nav-link group transition-colors duration-200 flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Compliance & Safety</a>
             </nav>
             <div class="p-4 border-t border-[#EAE5E0] text-xs text-center text-[#A89E93]">
                 <span>Manual Version: 2025.Q3</span>
@@ -57,100 +55,103 @@
             <div class="p-6 md:p-8 space-y-8">
                 <!-- Dashboard Section -->
                 <section id="dashboard" class="tab-content space-y-8">
-                    <header>
-                        <h2 class="text-3xl font-bold text-[#38332E]">Executive Dashboard</h2>
-                        <p class="mt-2 text-lg text-[#5F574F]">An at-a-glance overview of the core principles for TikTok growth in 2025. This dashboard synthesizes the key metrics and strategies that have the highest impact on reach and retention.</p>
-                    </header>
+                    <div class="clay-card grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2">
+                             <h2 class="text-3xl font-bold text-[#38332E]">The Commercial Engine</h2>
+                             <p class="mt-2 text-base text-[#5F574F]">Forget trying to "trick" the algorithm or waiting for a lucky viral moment. Based on a deep synthesis of the sources, the secret to market dominance in 2025 is to treat marketing not as a creative lottery but as a systematic engineering discipline. Success is an engineered inevitability, achieved by building a complete commercial engine that aligns a core brand ideology with the non-negotiable laws of human psychology and the cold, hard metrics of platform algorithms. This system reframes your brand as a belief system, your content as a psycho-resonant signal, and your strategy as a data-driven feedback loop, allowing you to architect belief, shape perception, and systematically manufacture success.</p>
+                        </div>
+                        <div class="md:col-span-1 flex justify-center">
+                            <img src="assets/adtok-logo-wave.jpg" alt="AdTok Logo with ocean wave" class="rounded-2xl w-full max-w-xs shadow-lg">
+                        </div>
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="kpi-card bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card text-center">
                            <h3 class="font-semibold text-[#38332E]">Hook Effectiveness</h3>
-                           <p class="text-4xl font-bold text-[#4a9b8e] mt-2">>65%</p>
-                           <p class="text-sm text-[#5F574F] mt-1">Target 3-second view rate to stop the scroll.</p>
+                           <p class="text-5xl font-bold text-[#4a9b8e] mt-2">>65%</p>
+                           <p class="text-sm text-[#5F574F] mt-1">3-second view rate</p>
                         </div>
-                        <div class="kpi-card bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card text-center">
                             <h3 class="font-semibold text-[#38332E]">Video Completion</h3>
-                            <p class="text-4xl font-bold text-[#D4756B] mt-2">>45%</p>
-                            <p class="text-sm text-[#5F574F] mt-1">Target watch-through rate for a strong algorithm signal.</p>
+                            <p class="text-5xl font-bold text-[#D4756B] mt-2">>45%</p>
+                            <p class="text-sm text-[#5F574F] mt-1">Watch-through rate</p>
                         </div>
-                        <div class="kpi-card bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card text-center">
                            <h3 class="font-semibold text-[#38332E]">High-Value Engagement</h3>
-                           <p class="text-4xl font-bold text-[#e8a87c] mt-2">>2%</p>
-                           <p class="text-sm text-[#5F574F] mt-1">Target Share Rate. Shares are weighted more than likes.</p>
+                           <p class="text-5xl font-bold text-[#e8a87c] mt-2">>2%</p>
+                           <p class="text-sm text-[#5F574F] mt-1">Share Rate</p>
                         </div>
-                        <div class="kpi-card bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card text-center">
                            <h3 class="font-semibold text-[#38332E]">First Hour Velocity</h3>
-                           <p class="text-4xl font-bold text-[#c27664] mt-2">Critical</p>
-                           <p class="text-sm text-[#5F574F] mt-1">Early engagement determines broader reach.</p>
+                           <p class="text-5xl font-bold text-[#c27664] mt-2">Critical</p>
+                           <p class="text-sm text-[#5F574F] mt-1">For initial distribution</p>
                         </div>
                     </div>
                      <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                        <div class="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="lg:col-span-3 clay-card">
                             <h3 class="text-lg font-semibold mb-4">Avg. Watch Time Trends (Last 14 Posts)</h3>
                             <div class="chart-container"><canvas id="watchTimeChart"></canvas></div>
                         </div>
-                        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="lg:col-span-2 clay-card">
                             <h3 class="text-lg font-semibold mb-4">Primary Traffic Sources</h3>
                             <div class="chart-container"><canvas id="trafficSourceChart"></canvas></div>
                         </div>
                     </div>
                 </section>
                 
-                <!-- Algorithm Section -->
+                <!-- Other sections remain hidden by default -->
                 <section id="algorithm" class="tab-content hidden space-y-6">
                     <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">The Algorithm Decoded</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">Understand the multi-stage system that powers the "For You" feed. This section breaks down the journey of a video from upload to potential virality.</p>
                     </header>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                    <div class="clay-card">
                         <h3 class="text-xl font-bold mb-4 text-center text-[#38332E]">The TikTok Recommender Stack</h3>
                         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center my-4">
-                            <div class="flowchart-node"><strong>1. Candidate Generation</strong><p class="text-xs mt-1 text-[#5F574F]">Initial pool of videos</p></div>
+                            <div class="clay-card p-4 text-center"><strong>1. Candidate Generation</strong><p class="text-xs mt-1 text-[#5F574F]">Initial pool of videos</p></div>
                             <div class="flowchart-arrow h-16"></div>
-                            <div class="flowchart-node"><strong>2. Fine Ranking</strong><p class="text-xs mt-1 text-[#5F574F]">Scores based on predicted engagement</p></div>
+                            <div class="clay-card p-4 text-center"><strong>2. Fine Ranking</strong><p class="text-xs mt-1 text-[#5F574F]">Scores based on predicted engagement</p></div>
                             <div class="flowchart-arrow h-16 hidden md:block"></div>
-                            <div class="flowchart-node"><strong>3. Re-Ranking & Filters</strong><p class="text-xs mt-1 text-[#5F574F]">Applies safety & diversity rules</p></div>
+                            <div class="clay-card p-4 text-center"><strong>3. Re-Ranking & Filters</strong><p class="text-xs mt-1 text-[#5F574F]">Applies safety & diversity rules</p></div>
                         </div>
                         <p class="text-sm text-[#5F574F] mt-4">TikTok's system, powered by frameworks like **ByteDance Monolith**, uses a multi-stage process. It starts with a huge pool of videos (**Candidate Generation**), scores them based on your predicted interest (**Fine Ranking**), and finally applies safety and business rules (**Filters**) before delivering the content to your "For You" feed. Your real-time interactions create a constant feedback loop that refines the model instantly.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                    <div class="clay-card">
                         <h3 class="text-xl font-bold mb-2 text-[#38332E]">High-Weight Ranking Signals</h3>
                         <p class="text-sm text-[#5F574F] mb-4">Not all engagement is equal. The algorithm heavily prioritizes signals that indicate deep user satisfaction and content value. Focus your creative energy on these metrics.</p>
                         <div id="signal-weights-chart-container" class="chart-container"><canvas id="signalWeightsChart"></canvas></div>
                     </div>
                 </section>
 
-                <!-- Playbook Section -->
                 <section id="playbook" class="tab-content hidden space-y-6">
                     <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">The Viral Playbook</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">This section provides proven, niche-specific content templates. Use the filter to find patterns for your category, and adapt these frameworks to your unique voice and style.</p>
                     </header>
-                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                     <div class="clay-card">
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <button class="playbook-filter-btn bg-[#D4756B] text-white px-4 py-2 text-sm font-semibold rounded-full" data-niche="All">All Niches</button>
-                            <button class="playbook-filter-btn bg-white hover:bg-[#FDFBF8] border border-[#EAE5E0] px-4 py-2 text-sm font-semibold rounded-full" data-niche="Education">Education</button>
-                            <button class="playbook-filter-btn bg-white hover:bg-[#FDFBF8] border border-[#EAE5E0] px-4 py-2 text-sm font-semibold rounded-full" data-niche="Fitness">Fitness</button>
-                            <button class="playbook-filter-btn bg-white hover:bg-[#FDFBF8] border border-[#EAE5E0] px-4 py-2 text-sm font-semibold rounded-full" data-niche="Tech">Tech</button>
-                            <button class="playbook-filter-btn bg-white hover:bg-[#FDFBF8] border border-[#EAE5E0] px-4 py-2 text-sm font-semibold rounded-full" data-niche="Beauty">Beauty</button>
-                            <button class="playbook-filter-btn bg-white hover:bg-[#FDFBF8] border border-[#EAE5E0] px-4 py-2 text-sm font-semibold rounded-full" data-niche="Food">Food</button>
-                            <button class="playbook-filter-btn bg-white hover:bg-[#FDFBF8] border border-[#EAE5E0] px-4 py-2 text-sm font-semibold rounded-full" data-niche="Comedy">Comedy</button>
+                            <button class="playbook-filter-btn clay-button active" data-niche="All">All Niches</button>
+                            <button class="playbook-filter-btn clay-button" data-niche="Education">Education</button>
+                            <button class="playbook-filter-btn clay-button" data-niche="Fitness">Fitness</button>
+                            <button class="playbook-filter-btn clay-button" data-niche="Tech">Tech</button>
+                            <button class="playbook-filter-btn clay-button" data-niche="Beauty">Beauty</button>
+                            <button class="playbook-filter-btn clay-button" data-niche="Food">Food</button>
+                            <button class="playbook-filter-btn clay-button" data-niche="Comedy">Comedy</button>
                         </div>
                         <div id="playbook-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                     </div>
                 </section>
                 
-                <!-- Psychology Section -->
                 <section id="psychology" class="tab-content hidden space-y-6">
                      <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">Creator Psychology</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">The most successful content leverages principles of human psychology to capture and hold attention. This section provides a checklist of cognitive principles and how to apply them.</p>
                     </header>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                    <div class="clay-card">
                         <div id="psychology-content" class="space-y-4"></div>
                     </div>
                 </section>
                 
-                <!-- Monetization Section -->
                 <section id="monetization" class="tab-content hidden space-y-6">
                      <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">Monetization Pathways</h2>
@@ -160,21 +161,20 @@
                     </div>
                 </section>
 
-                <!-- Case Studies & Media Section -->
                 <section id="casestudies" class="tab-content hidden space-y-6">
                     <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">Case Studies & Media</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">Explore real-world creator growth journeys and media examples from the manual. See how different strategies lead to tangible results.</p>
                     </header>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card">
                             <h3 class="text-xl font-bold mb-4 text-[#38332E]">Example Video Content</h3>
                             <video controls class="w-full" preload="metadata">
                                 <source src="assets/tiktok_video.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card">
                             <h3 class="text-xl font-bold mb-4 text-[#38332E]">Example Audio Content</h3>
                              <audio controls class="w-full" preload="metadata">
                                 <source src="assets/tiktok_audio.mp3" type="audio/mpeg">
@@ -182,34 +182,31 @@
                             </audio>
                         </div>
                     </div>
-                    <div id="casestudies-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                    <div id="casestudies-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"></div>
                 </section>
 
-                <!-- Compliance Section -->
                 <section id="compliance" class="tab-content hidden space-y-6">
                     <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">Compliance & Safety</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">Sustainable growth requires staying on the right side of TikTok's policies. This section outlines practices to avoid and a pre-post safety checklist.</p>
                     </header>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                        <div class="clay-card">
                             <h3 class="text-xl font-bold mb-4 text-red-600">Practices to AVOID</h3>
                             <ul id="compliance-avoid-list" class="list-disc list-inside space-y-3 text-[#5F574F]"></ul>
                         </div>
-                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                         <div class="clay-card">
                             <h3 class="text-xl font-bold mb-4 text-green-600">Pre-Post Safety Checklist</h3>
                             <ul id="compliance-checklist" class="space-y-3 text-[#5F574F]"></ul>
                         </div>
                     </div>
                 </section>
-
             </div>
         </main>
     </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // --- DATA STORE ---
     const appData = {
         watchTime: { labels: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11', 'P12', 'P13', 'P14'], data: [21, 23, 24, 22, 26, 28, 29, 27, 30, 33, 31, 34, 36, 38] },
         trafficSources: { labels: ['For You', 'Search', 'Profile', 'Following'], data: [62, 24, 8, 6] },
@@ -264,35 +261,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- CHART RENDERING ---
     let charts = {};
     function renderCharts() {
         Object.values(charts).forEach(chart => chart.destroy());
+        const commonOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, x: { grid: { display: false }, ticks: { color: '#A89E93' } } } };
+        
         const watchTimeCtx = document.getElementById('watchTimeChart')?.getContext('2d');
-        if (watchTimeCtx) charts.watchTime = new Chart(watchTimeCtx, { type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false, grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, x: { grid: { display: false }, ticks: { color: '#A89E93' } } } } });
+        if (watchTimeCtx) charts.watchTime = new Chart(watchTimeCtx, { type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] }, options: commonOptions });
+        
         const trafficSourceCtx = document.getElementById('trafficSourceChart')?.getContext('2d');
-        if (trafficSourceCtx) charts.trafficSource = new Chart(trafficSourceCtx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#BFAD9A'], borderColor: '#FFFFFF', borderWidth: 4 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12 } } } } } });
+        if (trafficSourceCtx) charts.trafficSource = new Chart(trafficSourceCtx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'], borderColor: '#F4F1ED', borderWidth: 6 }] }, options: { ...commonOptions, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12 } } } } } });
+        
         const signalWeightsCtx = document.getElementById('signalWeightsChart')?.getContext('2d');
-        if (signalWeightsCtx) charts.signalWeights = new Chart(signalWeightsCtx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#BFAD9A'] }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, y: { grid: { display: false }, ticks: { color: '#38332E', font: { weight: '600' } } } } } });
+        if (signalWeightsCtx) charts.signalWeights = new Chart(signalWeightsCtx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'] }] }, options: { ...commonOptions, indexAxis: 'y', scales: { ...commonOptions.scales, y: { ...commonOptions.scales.y, ticks: { ...commonOptions.scales.y.ticks, color: '#4A443F', font: { weight: '600' } } } } } });
     }
 
-    // --- DYNAMIC CONTENT RENDERING ---
     function renderPlaybooks(filter = 'All') {
         const container = document.getElementById('playbook-content');
         if (!container) return;
         const filtered = filter === 'All' ? appData.playbooks : appData.playbooks.filter(p => p.niche === filter);
         container.innerHTML = filtered.map(p => `
-            <div class="playbook-card bg-[#FDFBF8] p-5 rounded-xl border border-[#EAE5E0]" data-niche="${p.niche}">
+            <div class="clay-card" data-niche="${p.niche}">
                 <span class="text-xs font-bold uppercase tracking-wider text-white bg-[#${p.niche.length % 5 === 0 ? 'D4756B' : (p.niche.length % 5 === 1 ? '4a9b8e' : 'e8a87c')}] px-2 py-1 rounded">${p.niche}</span>
                 <h4 class="font-bold text-[#38332E] mt-3">${p.pattern}</h4>
                 <p class="text-sm font-semibold text-[#5F574F] mt-2 italic">“${p.hook}”</p>
                 <p class="text-sm text-[#5F574F] mt-3">${p.tactic}</p>
             </div>`).join('');
     }
+    
     document.querySelector('.playbook-filter-btn')?.parentElement.addEventListener('click', (e) => {
         if (e.target.classList.contains('playbook-filter-btn')) {
-            document.querySelectorAll('.playbook-filter-btn').forEach(btn => btn.classList.remove('bg-[#D4756B]', 'text-white'));
-            e.target.classList.add('bg-[#D4756B]', 'text-white');
+            document.querySelectorAll('.playbook-filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
             renderPlaybooks(e.target.dataset.niche);
         }
     });
@@ -300,18 +300,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPsychology() {
         const container = document.getElementById('psychology-content');
         if (container) container.innerHTML = appData.psychology.map(p => `
-            <div class="bg-[#FDFBF8] p-4 rounded-xl border border-[#EAE5E0]">
-                <details><summary class="font-bold text-lg text-[#38332E] hover:text-[#D4756B] cursor-pointer">${p.principle}</summary>
-                    <div class="pt-2 pl-4 border-l-2 border-[#EAE5E0] ml-1">
-                        <p class="text-base text-[#38332E]">${p.description}</p>
-                        <p class="text-sm text-white bg-[#BFAD9A] rounded-md p-3 mt-3"><strong>Example:</strong> ${p.example}</p>
+            <div class="clay-card p-0 overflow-hidden">
+                <details class="p-4"><summary class="font-bold text-lg text-[#38332E] hover:text-[#D4756B] cursor-pointer">${p.principle}</summary>
+                    <div class="pt-2 pl-4 border-l-2 border-[#EAE5E0] ml-1 mt-2">
+                        <p class="text-base text-[#4A443F]">${p.description}</p>
+                        <p class="text-sm text-[#5F574F] bg-[#EAE5E0] rounded-lg p-3 mt-3"><strong>Example:</strong> ${p.example}</p>
                     </div></details></div>`).join('');
     }
     
     function renderMonetization() {
         const container = document.getElementById('monetization-content');
         if (container) container.innerHTML = appData.monetization.map(m => `
-             <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+             <div class="clay-card">
                 <h3 class="text-lg font-bold text-[#38332E]">${m.name}</h3>
                 <p class="text-sm font-semibold text-[#D4756B] mt-1">${m.requirement}</p>
                 <p class="text-base text-[#5F574F] mt-3">${m.bestFor}</p>
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCaseStudies() {
         const container = document.getElementById('casestudies-content');
         if (container) container.innerHTML = appData.caseStudies.map(cs => `
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+            <div class="clay-card">
                  <h4 class="font-bold text-lg text-[#38332E]">${cs.name}</h4>
                  <span class="text-xs font-semibold bg-[#EAE5E0] text-[#5F574F] px-2 py-1 rounded-full">${cs.niche}</span>
                  <p class="text-sm text-[#5F574F] mt-3">${cs.journey}</p>
@@ -339,7 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </li>`).join('');
     }
 
-    // --- NAVIGATION ---
     const navLinks = document.querySelectorAll('.nav-link');
     const tabContents = document.querySelectorAll('.tab-content');
     navLinks.forEach(link => {
@@ -353,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- INITIALIZATION ---
     renderCharts();
     renderPlaybooks();
     renderPsychology();
@@ -364,4 +362,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
