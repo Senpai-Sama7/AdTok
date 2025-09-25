@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2025-09-24T23:00:23Z",
+  "generated_at_utc": "2025-09-24T23:17:55Z",
   "features": [
     {
       "id": "FEAT-001",
@@ -30,7 +30,7 @@
       ],
       "status": "VERIFIED",
       "evidence": {
-        "log": "evidence/npm-test-20250214.txt",
+        "log": "evidence/npm-test-20250924T231742Z.txt",
         "signals": [
           "✔ Found index.html",
           "All automated QA checks passed."
@@ -48,7 +48,7 @@
       ],
       "status": "VERIFIED",
       "evidence": {
-        "log": "evidence/npm-test-smoke-20250214.txt",
+        "log": "evidence/npm-test-smoke-20250924T231748Z.txt",
         "signals": [
           "✓ sidebar navigation updates aria state and reveals panel",
           "aria-selected toggles during test run"
@@ -66,7 +66,7 @@
       ],
       "status": "VERIFIED",
       "evidence": {
-        "log": "evidence/npm-test-smoke-20250214.txt",
+        "log": "evidence/npm-test-smoke-20250924T231748Z.txt",
         "signals": [
           "✓ charts initialize with non-zero canvas dimensions",
           "Canvas width > 0 assertion passes"
