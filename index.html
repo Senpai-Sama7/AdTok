@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The TikTok Growth Master Manual | 2025 Edition</title>
     <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The application is structured as a multi-section, single-page dashboard. A fixed sidebar provides persistent navigation to core themes (Dashboard, Algorithm, Playbook, Psychology, Monetization, Compliance), allowing non-linear exploration. The main content area uses a responsive grid to display information in digestible cards. This design was chosen to translate the dense, multi-document source material into an intuitive, task-oriented interface. Users can get a high-level overview from the dashboard or deep-dive into a specific area like "Playbook" without losing context, which is superior to a linear document format for this type of strategic manual. -->
-    <!-- Visualization & Content Choices: Report Info: Core KPIs -> Goal: Inform -> Viz: Stat Cards. Report Info: Watch Time/Traffic -> Goal: Compare/Show Change -> Viz: Line/Doughnut Charts (Chart.js). Report Info: Niche Playbooks -> Goal: Organize/Inform -> Viz: Filterable interactive cards with hooks and tactics. Report Info: Recommender Stack -> Goal: Explain Process -> Viz: HTML/CSS Flowchart. Report Info: Psychological Principles -> Goal: Inform/Organize -> Viz: Interactive Details/Summary list. This approach uses the best interactive format for each type of information, prioritizing clarity and user engagement over static text. No SVG/Mermaid is used, adhering to constraints. -->
+    <!-- Application Structure Plan: The SPA is designed as a multi-tab dashboard. A persistent sidebar allows users to navigate between high-level thematic sections (Dashboard, Algorithm, Playbook, etc.), mirroring an intuitive analytics tool. The main content area for each section is a responsive grid of cards, each containing a specific piece of information (chart, text, diagram). This structure was chosen to make the dense report digestible, allowing users to get a quick overview from the main dashboard or perform deep dives into specific topics without being overwhelmed. The flow is non-linear, encouraging exploration based on the user's immediate needs (e.g., finding a script vs. understanding the algorithm). -->
+    <!-- Visualization & Content Choices: Data from the report is visualized using Chart.js for clarity and interaction. Report Info: Watch Time Trend -> Goal: Show Change -> Viz: Line Chart. Report Info: Traffic Source Breakdown -> Goal: Inform/Compare Proportions -> Viz: Doughnut Chart. Report Info: Creator Playbooks -> Goal: Organize/Inform -> Viz: Interactive cards with toggleable content. Report Info: Recommendation Stack -> Goal: Organize/Explain Process -> Viz: HTML/CSS flowchart diagram. These choices prioritize user understanding and engagement over static text, using the most appropriate visual tool for each data type. NO SVG/Mermaid used. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -30,6 +30,7 @@
         .playbook-card { transition: all 0.3s ease; }
         .playbook-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(212, 117, 107, 0.2); }
         details[open] summary { color: #D4756B; }
+        video, audio { border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #EAE5E0;}
     </style>
 </head>
 <body class="antialiased">
@@ -44,6 +45,7 @@
                 <a href="#" data-tab="playbook" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Viral Playbook</a>
                 <a href="#" data-tab="psychology" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Creator Psychology</a>
                 <a href="#" data-tab="monetization" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Monetization</a>
+                <a href="#" data-tab="casestudies" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Case Studies & Media</a>
                 <a href="#" data-tab="compliance" class="nav-link group hover:bg-[#D4756B] hover:text-white flex items-center px-3 py-2 text-sm font-semibold rounded-lg text-[#5F574F]">Compliance & Safety</a>
             </nav>
             <div class="p-4 border-t border-[#EAE5E0] text-xs text-center text-[#A89E93]">
@@ -139,7 +141,7 @@
                 
                 <!-- Psychology Section -->
                 <section id="psychology" class="tab-content hidden space-y-6">
-                    <header>
+                     <header>
                         <h2 class="text-3xl font-bold text-[#38332E]">Creator Psychology</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">The most successful content leverages principles of human psychology to capture and hold attention. This section provides a checklist of cognitive principles and how to apply them.</p>
                     </header>
@@ -154,9 +156,33 @@
                         <h2 class="text-3xl font-bold text-[#38332E]">Monetization Pathways</h2>
                         <p class="mt-2 text-lg text-[#5F574F]">TikTok offers a full-funnel ecosystem for creators to build a sustainable business. Understand the different channels, their requirements, and which content strategies align best with each.</p>
                     </header>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Monetization Cards will be generated by JS -->
+                    <div id="monetization-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     </div>
+                </section>
+
+                <!-- Case Studies & Media Section -->
+                <section id="casestudies" class="tab-content hidden space-y-6">
+                    <header>
+                        <h2 class="text-3xl font-bold text-[#38332E]">Case Studies & Media</h2>
+                        <p class="mt-2 text-lg text-[#5F574F]">Explore real-world creator growth journeys and media examples from the manual. See how different strategies lead to tangible results.</p>
+                    </header>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                            <h3 class="text-xl font-bold mb-4 text-[#38332E]">Example Video Content</h3>
+                            <video controls class="w-full" preload="metadata">
+                                <source src="assets/tiktok_video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                            <h3 class="text-xl font-bold mb-4 text-[#38332E]">Example Audio Content</h3>
+                             <audio controls class="w-full" preload="metadata">
+                                <source src="assets/tiktok_audio.mp3" type="audio/mpeg">
+                                Your browser does not support the audio tag.
+                            </audio>
+                        </div>
+                    </div>
+                    <div id="casestudies-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                 </section>
 
                 <!-- Compliance Section -->
@@ -185,18 +211,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- DATA STORE ---
     const appData = {
-        watchTime: {
-            labels: ['Post 1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11', 'P12', 'P13', 'P14'],
-            data: [21, 23, 24, 22, 26, 28, 29, 27, 30, 33, 31, 34, 36, 38]
-        },
-        trafficSources: {
-            labels: ['For You', 'Search', 'Profile', 'Following'],
-            data: [62, 24, 8, 6]
-        },
-        signalWeights: {
-            labels: ['Completion & Rewatch', 'Shares', 'Saves & Comments', 'Follows', 'Likes'],
-            data: [45, 25, 15, 10, 5]
-        },
+        watchTime: { labels: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11', 'P12', 'P13', 'P14'], data: [21, 23, 24, 22, 26, 28, 29, 27, 30, 33, 31, 34, 36, 38] },
+        trafficSources: { labels: ['For You', 'Search', 'Profile', 'Following'], data: [62, 24, 8, 6] },
+        signalWeights: { labels: ['Completion & Rewatch', 'Shares', 'Saves & Comments', 'Follows', 'Likes'], data: [45, 25, 15, 10, 5] },
         playbooks: [
             { niche: 'Education', pattern: 'Myth Bust & Explain', hook: 'You\'re using [Common Tool] wrong. Here’s why...', tactic: 'Leverages curiosity and the "I didn\'t know that!" factor, encouraging shares.' },
             { niche: 'Education', pattern: 'Quick How-To', hook: 'How to [do a task] in 3 easy steps.', tactic: 'High utility content that drives saves and rewatches for reference.' },
@@ -226,6 +243,11 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: 'Spark Ads', requirement: 'Proven organic video', bestFor: 'Amplifying high-performing content with brand partners.' },
             { name: 'Off-Platform Funnels', requirement: 'Any', bestFor: 'Driving traffic to courses, newsletters, or personal websites.' }
         ],
+        caseStudies: [
+            { name: 'Eduardo the Edutainer', niche: 'History', journey: 'From 50 followers to 25k by shifting from dry lectures to viral, meme-based history facts and series. Mastered hooks and community engagement.', keyTactic: 'Leveraged trending audio for a "POV: Napoleon" video, gaining 500 followers from one post.' },
+            { name: 'Felicia the Fitness Comedian', niche: 'Fitness & Comedy', journey: 'Grew from 200 to 50k followers by combining her fitness journey with relatable, humorous skits about gym life. Built a strong "gym bestie" persona.', keyTactic: 'A viral skit "When you\'re new at the gym" gained 10k followers by tapping into a universal pain point.' },
+            { name: 'The Tech Twins', niche: 'Tech & Comedy', journey: 'Pivoted from a viral prank (50k followers) to their true passion: tech. Lost unengaged followers but rebuilt a more valuable, monetizable audience.', keyTactic: 'Blended comedy with tech reviews, creating a unique format that appealed to a higher-value demographic.' }
+        ],
         compliance: {
             avoid: [
                 '**Artificial Engagement:** Buying followers, likes, or using engagement pods. The algorithm easily detects this.',
@@ -245,33 +267,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CHART RENDERING ---
     let charts = {};
     function renderCharts() {
-        if (charts.watchTime) charts.watchTime.destroy();
-        if (charts.trafficSource) charts.trafficSource.destroy();
-        if (charts.signalWeights) charts.signalWeights.destroy();
-
+        Object.values(charts).forEach(chart => chart.destroy());
         const watchTimeCtx = document.getElementById('watchTimeChart')?.getContext('2d');
-        if (watchTimeCtx) {
-            charts.watchTime = new Chart(watchTimeCtx, {
-                type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false, grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, x: { grid: { display: false }, ticks: { color: '#A89E93' } } } }
-            });
-        }
-
+        if (watchTimeCtx) charts.watchTime = new Chart(watchTimeCtx, { type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false, grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, x: { grid: { display: false }, ticks: { color: '#A89E93' } } } } });
         const trafficSourceCtx = document.getElementById('trafficSourceChart')?.getContext('2d');
-        if (trafficSourceCtx) {
-            charts.trafficSource = new Chart(trafficSourceCtx, {
-                type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#BFAD9A'], borderColor: '#FFFFFF', borderWidth: 4 }] },
-                options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12 } } } } }
-            });
-        }
-        
+        if (trafficSourceCtx) charts.trafficSource = new Chart(trafficSourceCtx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#BFAD9A'], borderColor: '#FFFFFF', borderWidth: 4 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12 } } } } } });
         const signalWeightsCtx = document.getElementById('signalWeightsChart')?.getContext('2d');
-        if (signalWeightsCtx) {
-            charts.signalWeights = new Chart(signalWeightsCtx, {
-                type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#BFAD9A'] }] },
-                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, y: { grid: { display: false }, ticks: { color: '#38332E', font: { weight: '600' } } } } }
-            });
-        }
+        if (signalWeightsCtx) charts.signalWeights = new Chart(signalWeightsCtx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#BFAD9A'] }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, y: { grid: { display: false }, ticks: { color: '#38332E', font: { weight: '600' } } } } } });
     }
 
     // --- DYNAMIC CONTENT RENDERING ---
@@ -285,81 +287,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4 class="font-bold text-[#38332E] mt-3">${p.pattern}</h4>
                 <p class="text-sm font-semibold text-[#5F574F] mt-2 italic">“${p.hook}”</p>
                 <p class="text-sm text-[#5F574F] mt-3">${p.tactic}</p>
-            </div>
-        `).join('');
+            </div>`).join('');
     }
-    
-    document.querySelector('.flex-wrap.gap-2').addEventListener('click', (e) => {
-        if(e.target.classList.contains('playbook-filter-btn')) {
-            document.querySelectorAll('.playbook-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-[#D4756B]', 'text-white');
-                btn.classList.add('bg-white', 'hover:bg-[#FDFBF8]');
-            });
+    document.querySelector('.playbook-filter-btn')?.parentElement.addEventListener('click', (e) => {
+        if (e.target.classList.contains('playbook-filter-btn')) {
+            document.querySelectorAll('.playbook-filter-btn').forEach(btn => btn.classList.remove('bg-[#D4756B]', 'text-white'));
             e.target.classList.add('bg-[#D4756B]', 'text-white');
-            e.target.classList.remove('bg-white', 'hover:bg-[#FDFBF8]');
             renderPlaybooks(e.target.dataset.niche);
         }
     });
 
     function renderPsychology() {
         const container = document.getElementById('psychology-content');
-        if (!container) return;
-        container.innerHTML = appData.psychology.map(p => `
+        if (container) container.innerHTML = appData.psychology.map(p => `
             <div class="bg-[#FDFBF8] p-4 rounded-xl border border-[#EAE5E0]">
-                <details>
-                    <summary class="font-bold text-lg text-[#38332E] hover:text-[#D4756B] cursor-pointer">${p.principle}</summary>
+                <details><summary class="font-bold text-lg text-[#38332E] hover:text-[#D4756B] cursor-pointer">${p.principle}</summary>
                     <div class="pt-2 pl-4 border-l-2 border-[#EAE5E0] ml-1">
                         <p class="text-base text-[#38332E]">${p.description}</p>
                         <p class="text-sm text-white bg-[#BFAD9A] rounded-md p-3 mt-3"><strong>Example:</strong> ${p.example}</p>
-                    </div>
-                </details>
-            </div>
-        `).join('');
+                    </div></details></div>`).join('');
     }
     
     function renderMonetization() {
-        const container = document.querySelector('#monetization .grid');
-        if (!container) return;
-        container.innerHTML = appData.monetization.map(m => `
+        const container = document.getElementById('monetization-content');
+        if (container) container.innerHTML = appData.monetization.map(m => `
              <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
                 <h3 class="text-lg font-bold text-[#38332E]">${m.name}</h3>
                 <p class="text-sm font-semibold text-[#D4756B] mt-1">${m.requirement}</p>
                 <p class="text-base text-[#5F574F] mt-3">${m.bestFor}</p>
-            </div>
-        `).join('');
+            </div>`).join('');
+    }
+
+    function renderCaseStudies() {
+        const container = document.getElementById('casestudies-content');
+        if (container) container.innerHTML = appData.caseStudies.map(cs => `
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-[#EAE5E0]">
+                 <h4 class="font-bold text-lg text-[#38332E]">${cs.name}</h4>
+                 <span class="text-xs font-semibold bg-[#EAE5E0] text-[#5F574F] px-2 py-1 rounded-full">${cs.niche}</span>
+                 <p class="text-sm text-[#5F574F] mt-3">${cs.journey}</p>
+                 <p class="text-sm font-semibold text-[#D4756B] bg-[#fdf2f1] p-3 rounded-lg mt-3"><strong>Key Tactic:</strong> ${cs.keyTactic}</p>
+            </div>`).join('');
     }
     
     function renderCompliance() {
         const avoidList = document.getElementById('compliance-avoid-list');
         if(avoidList) avoidList.innerHTML = appData.compliance.avoid.map(item => `<li>${item}</li>`).join('');
-
         const checklist = document.getElementById('compliance-checklist');
         if(checklist) checklist.innerHTML = appData.compliance.checklist.map(item => `
-            <li class="flex items-start">
-                <span class="text-green-600 mr-2 mt-1">✓</span>
-                <div>
-                    <strong class="text-[#38332E]">${item.item}:</strong> ${item.details}
-                </div>
-            </li>
-        `).join('');
+            <li class="flex items-start"><span class="text-green-600 mr-2 mt-1">✓</span>
+                <div><strong class="text-[#38332E]">${item.item}:</strong> ${item.details}</div>
+            </li>`).join('');
     }
 
     // --- NAVIGATION ---
     const navLinks = document.querySelectorAll('.nav-link');
     const tabContents = document.querySelectorAll('.tab-content');
-
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const tab = link.dataset.tab;
             navLinks.forEach(l => l.classList.remove('active-tab'));
             link.classList.add('active-tab');
-            tabContents.forEach(content => {
-                content.classList.toggle('hidden', content.id !== tab);
-            });
-            if (tab === 'algorithm') {
-                setTimeout(renderCharts, 50);
-            }
+            tabContents.forEach(content => content.classList.toggle('hidden', content.id !== tab));
+            if (tab === 'dashboard' || tab === 'algorithm') setTimeout(renderCharts, 50);
         });
     });
 
@@ -368,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPlaybooks();
     renderPsychology();
     renderMonetization();
+    renderCaseStudies();
     renderCompliance();
 });
 </script>
