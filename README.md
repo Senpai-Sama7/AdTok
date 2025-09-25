@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/adtok_logo.jpg" alt="AdTok" width="300"/>
+</p>
+
 # TikTok Marketing Psychology Dashboard
 
 > **Professional-grade marketing dashboard combining TikTok strategy with behavioral psychology and data science**
