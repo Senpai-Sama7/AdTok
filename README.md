@@ -10,7 +10,7 @@
 
 ## 🚀 Live Demo
 
-**[View Live Dashboard →](https://your-username.github.io/tiktok-marketing-dashboard)**
+**[View Website →](https://senpai-sama7.github.io/AdTok/)**
 
 ## ✨ Features
 
