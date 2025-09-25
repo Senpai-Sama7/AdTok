@@ -32,7 +32,7 @@
     </style>
 </head>
 <body class="antialiased">
-    <div class="relative flex min-h-screen bg-[#F4F1ED]">
+    <div class="relative min-h-screen md:flex bg-[#F4F1ED]">
         <!-- Mobile Header -->
         <header class="md:hidden sticky top-0 bg-[#F4F1ED]/80 backdrop-blur-sm z-20 border-b border-[#EAE5E0] flex items-center justify-between px-4 h-16">
             <h1 class="text-2xl font-extrabold text-[#D4756B]">AdTok</h1>
@@ -65,7 +65,7 @@
             </div>
         </aside>
 
-        <main class="flex-1 overflow-y-auto md:ml-64">
+        <main class="flex-1 w-full md:w-auto">
              <div class="p-4 md:p-8 space-y-6 md:space-y-8">
                 <!-- Dashboard Section -->
                 <section id="dashboard" class="tab-content space-y-6 md:space-y-8">
@@ -277,16 +277,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let charts = {};
     function renderCharts() {
         Object.values(charts).forEach(chart => chart.destroy());
-        const commonOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F' } }, x: { grid: { display: false }, ticks: { color: '#A89E93' } } } };
+        const commonOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: '#EAE5E0' }, ticks: { color: '#5F574F', font: { family: "'Inter', sans-serif"} } }, x: { grid: { display: false }, ticks: { color: '#A89E93', font: { family: "'Inter', sans-serif"} } } } };
         
         const watchTimeCtx = document.getElementById('watchTimeChart')?.getContext('2d');
         if (watchTimeCtx) charts.watchTime = new Chart(watchTimeCtx, { type: 'line', data: { labels: appData.watchTime.labels, datasets: [{ label: 'Avg. Watch Time (s)', data: appData.watchTime.data, borderColor: '#D4756B', backgroundColor: 'rgba(212, 117, 107, 0.1)', borderWidth: 2.5, pointBackgroundColor: '#D4756B', tension: 0.4, fill: true }] }, options: commonOptions });
         
         const trafficSourceCtx = document.getElementById('trafficSourceChart')?.getContext('2d');
-        if (trafficSourceCtx) charts.trafficSource = new Chart(trafficSourceCtx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'], borderColor: '#F4F1ED', borderWidth: 6 }] }, options: { ...commonOptions, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12 } } } } } });
+        if (trafficSourceCtx) charts.trafficSource = new Chart(trafficSourceCtx, { type: 'doughnut', data: { labels: appData.trafficSources.labels, datasets: [{ label: 'Traffic Source %', data: appData.trafficSources.data, backgroundColor: ['#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'], borderColor: '#F4F1ED', borderWidth: 6 }] }, options: { ...commonOptions, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: '#5F574F', boxWidth: 12, padding: 20, font: { size: 12, family: "'Inter', sans-serif" } } } } } });
         
         const signalWeightsCtx = document.getElementById('signalWeightsChart')?.getContext('2d');
-        if (signalWeightsCtx) charts.signalWeights = new Chart(signalWeightsCtx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'] }] }, options: { ...commonOptions, indexAxis: 'y', scales: { ...commonOptions.scales, y: { ...commonOptions.scales.y, ticks: { ...commonOptions.scales.y.ticks, color: '#4A443F', font: { weight: '600' } } } } } });
+        if (signalWeightsCtx) charts.signalWeights = new Chart(signalWeightsCtx, { type: 'bar', data: { labels: appData.signalWeights.labels, datasets: [{ label: 'Relative Importance', data: appData.signalWeights.data, backgroundColor: ['#D4756B', '#4a9b8e', '#e8a87c', '#c27664', '#C9BDB3'] }] }, options: { ...commonOptions, indexAxis: 'y', scales: { ...commonOptions.scales, y: { ...commonOptions.scales.y, ticks: { ...commonOptions.scales.y.ticks, color: '#4A443F', font: { weight: '600', family: "'Inter', sans-serif" } } } } } });
     }
 
     function renderPlaybooks(filter = 'All') {
@@ -358,23 +358,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const menuClose = document.getElementById('menu-close');
 
+    function setActiveTab(tab) {
+        navLinks.forEach(l => l.classList.remove('active-tab'));
+        document.querySelector(`.nav-link[data-tab="${tab}"]`).classList.add('active-tab');
+        tabContents.forEach(content => content.classList.toggle('hidden', content.id !== tab));
+        if (tab === 'dashboard' || tab === 'algorithm') {
+            setTimeout(renderCharts, 50);
+        }
+    }
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const tab = link.dataset.tab;
-            navLinks.forEach(l => l.classList.remove('active-tab'));
-            link.classList.add('active-tab');
-            tabContents.forEach(content => content.classList.toggle('hidden', content.id !== tab));
+            setActiveTab(tab);
             if (window.innerWidth < 768) {
                 sidebar.classList.add('-translate-x-full');
             }
-            if (tab === 'dashboard' || tab === 'algorithm') setTimeout(renderCharts, 50);
         });
     });
 
     menuToggle.addEventListener('click', () => sidebar.classList.remove('-translate-x-full'));
     menuClose.addEventListener('click', () => sidebar.classList.add('-translate-x-full'));
 
+    // Initial render
     renderCharts();
     renderPlaybooks();
     renderPsychology();
@@ -385,3 +392,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
