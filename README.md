@@ -66,7 +66,7 @@
 # Enable GitHub Pages in Settings → Pages → Source: GitHub Actions
 
 # Your dashboard will be available at:
-# https://your-username.github.io/tiktok-marketing-dashboard
+# https:/senpai-sama7.github.io/tiktok-marketing-dashboard
 ```
 
 ### 2. Custom Domain (Optional)
@@ -82,8 +82,8 @@ git push origin main
 
 ### 3. Local Development
 ```bash
-git clone https://github.com/your-username/tiktok-marketing-dashboard.git
-cd tiktok-marketing-dashboard
+git clone https://github.com/senpai-sama7/AdTok.git
+cd AdTok
 
 npm install
 npm run dev
@@ -217,4 +217,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with 🧠 for marketing psychology enthusiasts**
 
-[Report Issues](https://github.com/your-username/tiktok-marketing-dashboard/issues) | [Request Features](https://github.com/your-username/tiktok-marketing-dashboard/discussions) | [View Demo](https://your-username.github.io/tiktok-marketing-dashboard)
+[Report Issues](https://github.com/senpai-sama7/AdTok/issues) | [Request Features](https://github.com/senpai-sama7AdTok/discussions) | [View Demo](https://senpai-sama7.github.io/tiktok-marketing-dashboard)
