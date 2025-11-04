@@ -66,7 +66,7 @@
 # Enable GitHub Pages in Settings → Pages → Source: GitHub Actions
 
 # Your dashboard will be available at:
-# https:/senpai-sama7.github.io/tiktok-marketing-dashboard
+# https:/senpai-sama7.github.io/AdTok
 ```
 
 ### 2. Custom Domain (Optional)
@@ -217,4 +217,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with 🧠 for marketing psychology enthusiasts**
 
-[Report Issues](https://github.com/senpai-sama7/AdTok/issues) | [Request Features](https://github.com/senpai-sama7AdTok/discussions) | [View Demo](https://senpai-sama7.github.io/tiktok-marketing-dashboard)
+[Report Issues](https://github.com/senpai-sama7/AdTok/issues) | [Request Features](https://github.com/senpai-sama7AdTok/discussions) | [View Demo](https://senpai-sama7.github.io/AdTok)
