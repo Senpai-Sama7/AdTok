@@ -1,0 +1,20 @@
+
+> tiktok-marketing-dashboard@1.0.0 test:smoke
+> playwright test
+
+[2m[WebServer] [22m
+[2m[WebServer] [22m> tiktok-marketing-dashboard@1.0.0 dev
+[2m[WebServer] [22m> vite --host 127.0.0.1 --port 5173
+[2m[WebServer] [22m
+[2m[WebServer] [22m
+[2m[WebServer] [22m  [32m[1mVITE[22m v5.4.20[39m  [2mready in [0m[1m294[22m[2m[0m ms[22m
+[2m[WebServer] [22m
+[2m[WebServer] [22m  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+
+Running 3 tests using 1 worker
+
+  ✓  1 [chromium] › tests/dashboard.spec.js:4:7 › AdTok dashboard smoke tests › renders default dashboard view and hides others (878ms)
+  ✓  2 [chromium] › tests/dashboard.spec.js:12:7 › AdTok dashboard smoke tests › sidebar navigation updates aria state and reveals panel (1.5s)
+  ✓  3 [chromium] › tests/dashboard.spec.js:29:7 › AdTok dashboard smoke tests › charts initialize with non-zero canvas dimensions (908ms)
+
+  3 passed (5.5s)

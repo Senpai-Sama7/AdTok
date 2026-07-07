@@ -1,0 +1,34 @@
+
+> tiktok-marketing-dashboard@1.0.0 test
+> node scripts/qa-check.js
+
+✔ Found index.html
+✔ Found src/styles/main.css
+✔ Found src/main.js
+✔ Found src/tabs.js
+✔ Found src/charts.js
+✔ Found docs/test-report.md
+✔ Found .github/workflows/deploy.yml
+✔ Found vite.config.mjs
+✔ index.html loads Vite entry module
+✔ Navigation preserves tablist roles
+✔ ARIA attributes present
+✔ Images opt into lazy loading where applicable
+✔ vite.config.mjs sets relative base for GitHub Pages
+✔ Tab panels reference valid aria-labelledby IDs
+✔ Default tab panel visible without JavaScript
+✔ Found canvas #line
+✔ Found canvas #bars
+✔ Found canvas #pie
+✔ Found canvas #gantt
+✔ Design tokens defined in :root
+✔ Brand color variables present
+✔ styles/main.css has printable characters only
+✔ Tab switcher exported
+✔ Keyboard navigation wired
+✔ Chart initializer exported
+✔ Source modules contain printable characters only
+✔ docs/test-report.md retains heading
+✔ QA report publishes overall score
+
+All automated QA checks passed.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://senpai-sama7.github.io/AdTok/sitemap.xml

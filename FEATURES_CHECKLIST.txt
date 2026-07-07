@@ -1,0 +1,4 @@
+- [x] FEAT-001 Production build emits relative asset URLs for GitHub Pages.
+- [x] FEAT-002 QA guard (`npm test`) confirms required files and accessibility invariants.
+- [x] FEAT-003 Sidebar and header tab navigation update aria state and visibility (Playwright smoke).
+- [x] FEAT-004 Canvas charts render at device-pixel resolution with non-zero dimensions.

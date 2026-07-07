@@ -1,0 +1,13 @@
+diff --git a/vite.config.mjs b/vite.config.mjs
+--- a/vite.config.mjs
++++ b/vite.config.mjs
+@@
+ export default defineConfig({
+   root: '.',
+   publicDir: 'public',
++  base: './',
+   build: {
+     outDir: 'dist',
+     emptyOutDir: true,
+   }
+ });
