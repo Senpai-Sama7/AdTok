@@ -1,0 +1,7 @@
+assets/tiktok_video.mp4
+assets/tiktok_audio.mp3
+assets/research-*.pdf
+index.html.bak
+*.patch
+.git
+.gitignore
